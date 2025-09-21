@@ -14,9 +14,11 @@ function processImagePath(path: string): string {
   if (path.startsWith(basePath)) {
     return path;
   }
+  // 确保 basePath 以 / 结尾
+  const normalizedBasePath = basePath.endsWith('/') ? basePath : basePath + '/';
   // 移除开头的 / 并添加 base path
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  return basePath + cleanPath;
+  return normalizedBasePath + cleanPath;
 }
 
 // 图片类型定义

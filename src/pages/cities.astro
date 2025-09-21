@@ -10,14 +10,14 @@ const pageTitle = t('cities.title', lang);
 
 <BaseLayout title={pageTitle}>
   <!-- Breadcrumb Navigation -->
-  <div class="bg-gray-50 py-4 border-b border-gray-200">
-    <div class="container-custom">
+  <div class="bg-gray-50 py-2 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-1 sm:px-2">
       <Breadcrumb currentPath={Astro.url.pathname} lang={lang} />
     </div>
   </div>
   
   <!-- Page Header -->
-  <div class="bg-gradient-to-r from-aws-blue to-blue-700 text-white py-12">
+  <div class="bg-gradient-to-r from-aws-blue to-blue-700 text-white py-6">
     <div class="container-custom text-center">
       <h1 class="text-3xl lg:text-4xl font-bold mb-3">
         {pageTitle}
