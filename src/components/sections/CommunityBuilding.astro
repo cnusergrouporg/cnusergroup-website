@@ -1,0 +1,173 @@
+---
+import { getLanguageFromUrl, t } from '../../utils';
+import Button from '../ui/Button.astro';
+import Card from '../ui/Card.astro';
+
+const lang = getLanguageFromUrl(Astro.url);
+
+const applications = [
+  {
+    type: 'leader',
+    title: t('community.applications.leader.title', lang),
+    cta: t('community.applications.leader.cta', lang),
+    icon: 'https://dev-media.amazoncloud.cn/client-250819071524/img/user.587e69d.png',
+    url: '#',
+    description: lang === 'zh' ? '成为社区领导者，组织技术活动，推动本地云计算发展' : 'Become a community leader, organize tech events, and drive local cloud computing development'
+  },
+  {
+    type: 'volunteer',
+    title: t('community.applications.volunteer.title', lang),
+    cta: t('community.applications.volunteer.cta', lang),
+    icon: 'https://dev-media.amazoncloud.cn/client-250819071524/img/volunteer_p.7e56947.png',
+    url: '#',
+    description: lang === 'zh' ? '加入志愿者团队，协助活动组织，为社区贡献力量' : 'Join the volunteer team, assist with event organization, and contribute to the community'
+  },
+  {
+    type: 'instructor',
+    title: t('community.applications.instructor.title', lang),
+    cta: t('community.applications.instructor.cta', lang),
+    icon: 'https://dev-media.amazoncloud.cn/client-250819071524/img/teacher_p.b3b4aca.png',
+    url: '#',
+    description: lang === 'zh' ? '分享技术知识，成为社区讲师，传播云计算最佳实践' : 'Share technical knowledge, become a community instructor, and spread cloud computing best practices'
+  }
+];
+---
+
+<section class="py-16 lg:py-24 bg-white">
+  <div class="container-custom">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <div class="flex items-center justify-center mb-6">
+        <img 
+          src="https://dev-media.amazoncloud.cn/client-250819071524/img/title_left.36eb2ee.png" 
+          alt="" 
+          class="h-8"
+        />
+        <h2 class="text-3xl lg:text-4xl font-bold text-aws-blue mx-6">
+          {t('community.title', lang)}
+        </h2>
+        <img 
+          src="https://dev-media.amazoncloud.cn/client-250819071524/img/title_right.871f0ac.png" 
+          alt="" 
+          class="h-8"
+        />
+      </div>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        {lang === 'zh' 
+          ? '加入我们的社区建设，与全球开发者一起推动云计算技术发展'
+          : 'Join our community building and work with global developers to advance cloud computing technology'
+        }
+      </p>
+    </div>
+    
+    <!-- Applications Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {applications.map((app, index) => (
+        <Card class="relative overflow-hidden group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-full" hover>
+          <!-- Background Pattern -->
+          <div class="absolute inset-0 opacity-5">
+            <img 
+              src="https://dev-media.amazoncloud.cn/client-250819071524/img/comm_request.d1f0226.png"
+              alt=""
+              class="w-full h-full object-cover"
+            />
+          </div>
+          
+          <div class="relative z-10 p-6 text-center h-full flex flex-col">
+            <!-- Icon -->
+            <div class="mb-6">
+              <img 
+                src={app.icon}
+                alt={app.title}
+                class="w-16 h-16 mx-auto group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            
+            <!-- Title -->
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              {app.title}
+            </h3>
+            
+            <!-- Description -->
+            <p class="text-sm text-gray-600 mb-6 leading-relaxed flex-grow">
+              {app.description}
+            </p>
+            
+            <!-- CTA Button -->
+            <div class="mt-auto">
+              <Button 
+                href={app.url}
+                variant="primary"
+                size="sm"
+                class="w-full group-hover:bg-orange-600 transition-colors duration-300"
+              >
+                {app.cta}
+              </Button>
+            </div>
+          </div>
+          
+          <!-- Hover Effect -->
+          <div class="absolute inset-0 bg-gradient-to-t from-aws-orange/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </Card>
+      ))}
+    </div>
+    
+    <!-- Additional Info -->
+    <div class="mt-16 text-center">
+      <div class="bg-gradient-to-r from-blue-50 to-orange-50 rounded-lg p-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+          {lang === 'zh' ? '为什么加入我们？' : 'Why Join Us?'}
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0 w-8 h-8 bg-aws-orange rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-1">
+                {lang === 'zh' ? '技术成长' : 'Technical Growth'}
+              </h4>
+              <p class="text-sm text-gray-600">
+                {lang === 'zh' ? '与行业专家交流，提升技术能力' : 'Exchange with industry experts and improve technical skills'}
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0 w-8 h-8 bg-aws-orange rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-1">
+                {lang === 'zh' ? '人脉网络' : 'Professional Network'}
+              </h4>
+              <p class="text-sm text-gray-600">
+                {lang === 'zh' ? '建立广泛的专业人脉关系' : 'Build extensive professional relationships'}
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0 w-8 h-8 bg-aws-orange rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-1">
+                {lang === 'zh' ? '认证奖励' : 'Recognition & Rewards'}
+              </h4>
+              <p class="text-sm text-gray-600">
+                {lang === 'zh' ? '获得官方认证和社区奖励' : 'Receive official certification and community rewards'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

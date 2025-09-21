@@ -1,0 +1,268 @@
+---
+import { getLanguageFromUrl, t, getActiveCities } from '../../utils';
+import { getUIImage } from '../../utils/images';
+import { validateCityGridProps } from '../../utils/validation';
+import CityCard from '../ui/CityCard.astro';
+import type { Language } from '../../types';
+import type { CityGridProps } from '../../types/components';
+
+interface Props extends CityGridProps {
+  lang?: Language;
+  forceHorizontalLayout?: boolean;
+}
+
+const lang = getLanguageFromUrl(Astro.url);
+const { 
+  title = t('cities.title', lang),
+  subtitle = t('cities.subtitle', lang),
+  showInactive = false,
+  showAll = true,
+  lang: propLang,
+  cities: propCities,
+  className = '',
+  forceHorizontalLayout = false,
+  columns = {
+    mobile: 1,
+    tablet: 2,
+    desktop: 3
+  }
+} = Astro.props;
+
+// 验证属性
+if (!validateCityGridProps(Astro.props)) {
+  console.warn('Invalid CityGrid props, using defaults');
+}
+
+// 使用传入的 lang 或从 URL 获取
+const currentLang = propLang || lang;
+
+// 获取城市数据
+const allCities = propCities || getActiveCities();
+const citiesToShow = showInactive ? allCities : allCities.filter(city => city.active);
+---
+
+<section class="py-8 lg:py-12 bg-white" aria-labelledby="cities-section-title">
+  <div class="container-custom">
+    <!-- Section Header -->
+    <div class="text-center mb-8">
+      <div class="flex items-center justify-center mb-6">
+        <img 
+          src={getUIImage('titleLeft')}
+          alt="" 
+          class="h-8"
+          role="presentation"
+        />
+        <h2 id="cities-section-title" class="text-3xl lg:text-4xl font-bold text-aws-blue mx-6">
+          {title}
+        </h2>
+        <img 
+          src={getUIImage('titleRight')}
+          alt="" 
+          class="h-8"
+          role="presentation"
+        />
+      </div>
+      <p class="text-xl text-gray-600 max-w-4xl mx-auto" id="cities-section-description">
+        {subtitle}
+      </p>
+    </div>
+    
+    <!-- Cities Grid -->
+    <div 
+      class="cities-grid" 
+      role="list" 
+      aria-labelledby="cities-section-title"
+      aria-describedby="cities-section-description"
+    >
+      {citiesToShow.map((city) => (
+        <CityCard 
+          city={city} 
+          lang={lang}
+          class={`city-grid-item ${forceHorizontalLayout ? 'horizontal-layout-forced' : ''}`}
+          variant={city.active ? 'default' : 'default'}
+          disabled={!city.active && !showInactive}
+          showStatus={city.active}
+        />
+      ))}
+    </div>
+    
+    <!-- Empty State -->
+    {citiesToShow.length === 0 && (
+      <div 
+        class="text-center py-16" 
+        role="status" 
+        aria-live="polite"
+        aria-label={lang === 'zh' ? '城市列表为空' : 'City list is empty'}
+      >
+        <div class="text-gray-400 mb-4" aria-hidden="true">
+          <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-600 mb-2">
+          {lang === 'zh' ? '暂无城市社区' : 'No City Communities'}
+        </h3>
+        <p class="text-gray-500">
+          {lang === 'zh' ? '更多城市社区即将推出' : 'More city communities coming soon'}
+        </p>
+      </div>
+    )}
+    
+    <!-- Load More Button (for future pagination) -->
+    {citiesToShow.length > 12 && (
+      <div class="text-center mt-12">
+        <button 
+          class="btn-secondary px-8 py-3 text-lg load-more-btn"
+          onclick="loadMoreCities()"
+          aria-describedby="cities-section-title"
+          aria-label={lang === 'zh' ? '加载更多城市社区' : 'Load more city communities'}
+        >
+          {lang === 'zh' ? '加载更多城市' : 'Load More Cities'}
+        </button>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .cities-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 2rem;
+    width: 100%;
+    
+    /* Ensure consistent card sizing */
+    grid-auto-rows: max-content;
+    align-items: start;
+    justify-items: stretch;
+  }
+  
+  /* Small Tablet (641px-767px) */
+  @media (min-width: 641px) {
+    .cities-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+  
+  /* Tablet (768px-1199px) */
+  @media (min-width: 768px) {
+    .cities-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+  }
+  
+  /* Desktop (≥1200px) */
+  @media (min-width: 1200px) {
+    .cities-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+  }
+  
+  /* Large Desktop (≥1400px) */
+  @media (min-width: 1400px) {
+    .cities-grid {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 32px;
+    }
+  }
+  
+  .city-grid-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .city-grid-item:nth-child(1) { animation-delay: 0.1s; }
+  .city-grid-item:nth-child(2) { animation-delay: 0.15s; }
+  .city-grid-item:nth-child(3) { animation-delay: 0.2s; }
+  .city-grid-item:nth-child(4) { animation-delay: 0.25s; }
+  .city-grid-item:nth-child(5) { animation-delay: 0.3s; }
+  .city-grid-item:nth-child(6) { animation-delay: 0.35s; }
+  .city-grid-item:nth-child(7) { animation-delay: 0.4s; }
+  .city-grid-item:nth-child(8) { animation-delay: 0.45s; }
+  .city-grid-item:nth-child(9) { animation-delay: 0.5s; }
+  .city-grid-item:nth-child(10) { animation-delay: 0.55s; }
+  .city-grid-item:nth-child(11) { animation-delay: 0.6s; }
+  .city-grid-item:nth-child(12) { animation-delay: 0.65s; }
+  
+  /* For items beyond 12, use a more subtle delay pattern */
+  .city-grid-item:nth-child(n+13) { 
+    animation-delay: 0.7s; 
+  }
+
+  /* 强制左右布局样式 */
+  .horizontal-layout-forced .city_name {
+    flex-direction: row !important;
+    gap: 6px !important;
+  }
+
+  .horizontal-layout-forced .city_name > div:first-child {
+    font-size: 16px !important;
+  }
+
+  .horizontal-layout-forced .city_name > div:last-child {
+    font-size: 14px !important;
+  }
+
+  /* 响应式调整 */
+  @media (max-width: 1199px) {
+    .horizontal-layout-forced .city_name {
+      gap: 4px !important;
+    }
+
+    .horizontal-layout-forced .city_name > div:first-child {
+      font-size: 15px !important;
+    }
+
+    .horizontal-layout-forced .city_name > div:last-child {
+      font-size: 13px !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .city-grid-horizontal .city_name > div:first-child {
+      font-size: 14px !important;
+    }
+
+    .city-grid-horizontal .city_name > div:last-child {
+      font-size: 12px !important;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .city-grid-item {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  // 懒加载更多城市
+  function loadMoreCities() {
+    // 这里可以实现分页加载逻辑
+    console.log('Loading more cities...');
+    
+    // 暂时隐藏按钮，因为所有城市都已显示
+    const loadMoreBtn = document.querySelector('.load-more-btn') as HTMLElement;
+    if (loadMoreBtn) {
+      loadMoreBtn.style.display = 'none';
+    }
+  }
+  
+  // 将函数暴露到全局作用域
+  (window as any).loadMoreCities = loadMoreCities;
+</script>

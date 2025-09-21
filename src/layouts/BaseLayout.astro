@@ -1,0 +1,309 @@
+---
+import { getLanguageFromUrl, getPageTitle, t } from '../utils';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import ImagePreloader from '../components/ui/ImagePreloader.astro';
+import FloatingQRCode from '../components/ui/FloatingQRCode.astro';
+import SocialTracking from '../components/analytics/SocialTracking.astro';
+import ErrorBoundary from '../components/ErrorBoundary.astro';
+import PerformanceMonitor from '../components/performance/PerformanceMonitor.astro';
+import AccessibilityEnhancer from '../components/accessibility/AccessibilityEnhancer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noIndex?: boolean;
+}
+
+const { title, description, image, noIndex = false } = Astro.props;
+const lang = getLanguageFromUrl(Astro.url);
+const pageTitle = getPageTitle(title || '', lang);
+const pageDescription = description || t('site.description', lang);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImage = image || '/images/og-image.jpg';
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={pageDescription} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{pageTitle}</title>
+    <link rel="canonical" href={canonicalURL} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={new URL(socialImage, Astro.url)} />
+    <meta property="og:locale" content={lang === 'zh' ? 'zh_CN' : 'en_US'} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
+    <meta property="twitter:image" content={new URL(socialImage, Astro.url)} />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://dev-media.amazoncloud.cn" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Language alternates -->
+    <link rel="alternate" hreflang="zh" href={new URL(Astro.url.pathname.replace(/^\/en/, ''), Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL('/en' + Astro.url.pathname, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/en/, ''), Astro.site)} />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.json`} />
+    <meta name="theme-color" content="#FF9900" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="CNUserGroup" />
+    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}images/icons/icon-192x192.png`} />
+    <meta name="msapplication-TileColor" content="#FF9900" />
+    <meta name="msapplication-TileImage" content={`${import.meta.env.BASE_URL}images/icons/icon-144x144.png`} />
+    
+    <!-- 预加载关键图片 -->
+    <ImagePreloader images={[
+      { src: `${import.meta.env.BASE_URL}images/ui/banner-bg.jpg`, type: 'image/jpeg' },
+      { src: `${import.meta.env.BASE_URL}images/ui/title-left.png`, type: 'image/png' },
+      { src: `${import.meta.env.BASE_URL}images/ui/title-right.png`, type: 'image/png' }
+    ]} />
+  </head>
+  
+  <body class="min-h-screen flex flex-col bg-white text-gray-900 font-sans">
+    <!-- Skip Links for accessibility -->
+    <div class="skip-links">
+      <a 
+        href="#main-content" 
+        class="skip-link"
+      >
+        {lang === 'zh' ? '跳转到主要内容' : 'Skip to main content'}
+      </a>
+      <a 
+        href="#navigation" 
+        class="skip-link"
+      >
+        {lang === 'zh' ? '跳转到导航' : 'Skip to navigation'}
+      </a>
+      <a 
+        href="#footer" 
+        class="skip-link"
+      >
+        {lang === 'zh' ? '跳转到页脚' : 'Skip to footer'}
+      </a>
+    </div>
+    
+    <!-- Error Boundary -->
+    <ErrorBoundary>
+      <!-- Header -->
+      <Header />
+      
+      <!-- Main Content -->
+      <main id="main-content" class="flex-1">
+        <slot />
+      </main>
+      
+      <!-- Footer -->
+      <Footer />
+    </ErrorBoundary>
+    
+    <!-- Floating QR Code -->
+    <FloatingQRCode />
+    
+    <!-- Social Media Tracking -->
+    <SocialTracking />
+    
+    <!-- Performance Monitoring -->
+    <PerformanceMonitor />
+    
+    <!-- Accessibility Enhancements -->
+    <AccessibilityEnhancer />
+    
+    <!-- Image Handling Script -->
+    <script>
+      import '../scripts/globalImageHandling.ts';
+    </script>
+    
+    <!-- Accessibility Script -->
+    <script>
+      import { accessibilityManager } from '../scripts/accessibility.ts';
+      
+      // 确保可访问性管理器已初始化
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('Accessibility manager initialized');
+      });
+    </script>
+    
+    <!-- Global Scripts -->
+    <script>
+      import { 
+        initializeCaching, 
+        preloader, 
+        networkCache 
+      } from '../utils/caching.ts';
+      import { 
+        preloadCriticalResources,
+        trackPerformanceMetrics,
+        optimizeFontLoading 
+      } from '../utils/performance.ts';
+
+      // 性能优化初始化
+      function initPerformanceOptimizations() {
+        // 预加载关键资源
+        preloadCriticalResources();
+        
+        // 优化字体加载
+        optimizeFontLoading();
+        
+        // 初始化缓存系统
+        initializeCaching();
+        
+        // 性能监控
+        trackPerformanceMetrics();
+        
+        // 智能预加载
+        preloader.intelligentPreload();
+      }
+
+      // 平滑滚动
+      function initSmoothScrolling() {
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href')?.substring(1);
+            const targetElement = targetId ? document.getElementById(targetId) : null;
+            
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+      }
+
+      // 语言偏好存储
+      function initLanguagePreference() {
+        const currentLang = document.documentElement.lang;
+        if (currentLang) {
+          networkCache.set('preferred-language', currentLang, 30 * 24 * 60 * 60 * 1000);
+        }
+      }
+
+      // PWA 安装提示
+      function initPWAInstallPrompt() {
+        let deferredPrompt: any;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+          
+          // 显示安装按钮（如果需要）
+          const installButton = document.getElementById('pwa-install-button');
+          if (installButton) {
+            installButton.style.display = 'block';
+            installButton.addEventListener('click', async () => {
+              if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`PWA install outcome: ${outcome}`);
+                deferredPrompt = null;
+                installButton.style.display = 'none';
+              }
+            });
+          }
+        });
+      }
+
+      // 网络状态监控
+      function initNetworkMonitoring() {
+        function updateNetworkStatus() {
+          const isOnline = navigator.onLine;
+          document.body.classList.toggle('offline', !isOnline);
+          
+          if (!isOnline) {
+            // 显示离线提示
+            const offlineNotice = document.createElement('div');
+            offlineNotice.id = 'offline-notice';
+            offlineNotice.className = 'fixed top-0 left-0 right-0 bg-yellow-500 text-white text-center py-2 z-50';
+            offlineNotice.textContent = '网络连接已断开，正在使用缓存内容';
+            document.body.appendChild(offlineNotice);
+          } else {
+            // 移除离线提示
+            const offlineNotice = document.getElementById('offline-notice');
+            if (offlineNotice) {
+              offlineNotice.remove();
+            }
+          }
+        }
+
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+        updateNetworkStatus();
+      }
+
+      // 初始化所有功能
+      document.addEventListener('DOMContentLoaded', () => {
+        initPerformanceOptimizations();
+        initSmoothScrolling();
+        initLanguagePreference();
+        initPWAInstallPrompt();
+        initNetworkMonitoring();
+      });
+
+      // 页面可见性变化处理
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          // 页面隐藏时暂停非关键操作
+          console.log('Page hidden, pausing non-critical operations');
+        } else {
+          // 页面显示时恢复操作
+          console.log('Page visible, resuming operations');
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  /* Custom scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+  }
+  
+  /* Focus styles for better accessibility */
+  .focus-visible:focus {
+    outline: 2px solid #FF9900;
+    outline-offset: 2px;
+  }
+</style>

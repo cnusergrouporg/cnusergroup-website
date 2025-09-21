@@ -1,0 +1,893 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getLanguageFromUrl, t } from '../utils';
+import communityImages from '../data/community-images.json';
+
+const lang = getLanguageFromUrl(Astro.url);
+---
+
+<BaseLayout title={t('about.title', lang)}>
+  <main class="about-page">
+    <!-- Hero Banner Section -->
+    <section class="hero-banner">
+      <div class="banner-content">
+        <div class="banner-left">
+          <div class="banner-title-wrapper">
+            <div class="banner-title">User Group</div>
+            <div class="title-decoration"></div>
+          </div>
+          <div class="banner-description">
+            亚马逊云科技 User Group（UG)全球社区由对技术充满热情的开发者组成，是为开发者们提供彼此学习、分享技术实践、培训进阶等活动的技术交流分享的社区。社区聚会汇集了亚马逊云科技技术开发者、合作伙伴、技术顾问和技术爱好者,共同分享技术热情。我们为各地 User Group 社区提供自主运营空间,并为社区领导者提供丰富活动资源和技术咨询。目前，User Group 社区已遍布全球 100 多个国家,超过 470 个组织，拥有 50 多万名成员。在中国，UG 社区已覆盖北京、上海、深圳、成都、杭州、合肥、重庆、武汉等 14 个城市。
+          </div>
+          <div class="banner-buttons">
+            <a href="/cities" class="btn btn-primary">查看用户组</a>
+            <a href="https://builder.aws.com/connect/community/user-groups" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">了解更多</a>
+          </div>
+        </div>
+        <div class="banner-right">
+          <img src={communityImages["User Group"]} alt="User Group" class="banner-image" />
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+    <!-- Leaders Section -->
+    <section class="leaders-section" id="leaders">
+      <div class="container">
+        <div class="section-title-image">
+          <img src={communityImages["优秀领导者"]} alt="优秀领导者" />
+        </div>
+        
+        <div class="leaders-content">
+          <div class="leaders-intro">
+            <p>
+              我们为各地 UG 社区提供自主运营空间,并为社区领导者提供丰富活动资源和技术咨询。 
+              我们正在寻找热情洋溢、充满活力的 UGL，期待开发者的你加入，共同扩展我们中国的技术社区，
+              如果你所在的城市尚未设立 User Group 社区，欢迎技术爱好者申请成立新的城市 User Group 社区。
+            </p>
+
+          </div>
+          
+          <div class="leaders-cards">
+            <div class="leader-card">
+              <h4>如果我成为UGL，我应该做些什么呢？</h4>
+              <ul>
+                <li>与同城 UGL 一起申请策划组织活动，拥有亚马逊云科技官方活动平台的加持，助力您举办更多更精彩的活动，线下线上均可定制。</li>
+                <li>参与确定活动主题和地点、互动宣传方式，招募发言人，和亚马逊云科技资深讲师对接等活动细节。</li>
+                <li>获取亚马逊云科技最前沿的资讯和发布，享有独家的资源和福利，传递给同城市 UG 小伙伴。</li>
+                <li>作为主要联系人，也是连接亚马逊云科技和 UG 的桥梁，定期反馈会员动态和建议。</li>
+              </ul>
+            </div>
+            
+            <div class="leader-card">
+              <h4>如果我成为UGL，会享有哪些福利呢？</h4>
+              <ul>
+                <li>UG 活动和信息的全渠道宣传；</li>
+                <li>优秀UGL可获得日本或者美国技术大会门票和免费机酒</li>
+                <li>直通云创计划，以及一定额度的 Amazon Web Services Credit；</li>
+                <li>User Group 定制礼品</li>
+                <li>每年提供免费的亚马逊云科技认证考试机会，并提供一定数量的折扣券用于激励 UG 志愿者；</li>
+                <li>更多激励计划即将推出</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Builder Section -->
+    <section class="community-builder-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="artistic-title-wrapper">
+            <h2 class="artistic-title community-builder-title">Community Builder</h2>
+            <div class="title-accent builder-accent"></div>
+          </div>
+        </div>
+        
+        <div class="builder-content">
+          <div class="builder-text">
+            <p>
+              亚马逊云科技 Community Builders 计划为亚马逊云技术爱好者和热衷于分享知识并渴望与技术社区建立联系的新兴思想开发者，
+              提供技术资源、指导和认识的机会。以便与亚马逊云科技开发者关系团队、产品团队、亚马逊云科技 Heroes 以及亚马逊云科技社区建立联系。
+            </p>
+            <p>
+              任何年满 18 岁且对亚马逊云科技感兴趣的人都可以申请成为亚马逊云科技 Community Builders，每一年将会有两次审核申请的机会。
+              申请标准并不单一，只要能证明你有热情、有兴趣、有能力参与即可，建议在申请时附上你曾参与的相关技术内容。
+            </p>
+            
+            <div class="builder-buttons">
+              <a href="https://builder.aws.com/connect/community/community-builders" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">查看 Builder 专栏</a>
+            </div>
+          </div>
+          
+          <div class="builder-image">
+            <img src={communityImages["Community Builder"]} alt="Community Builder" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Heroes Section -->
+    <section class="heroes-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="artistic-title-wrapper">
+            <h2 class="artistic-title hero-title">Hero</h2>
+            <div class="title-accent hero-accent"></div>
+          </div>
+        </div>
+        
+        <div class="heroes-content">
+          <div class="heroes-text">
+            <p>
+              亚马逊云科技 Heroes 项目是社区最重要的组成部分之一，该项目表彰了全球充满活力的亚马逊云科技专家群体，
+              他们对知识分享的热情在社区中产生了真正的影响。
+            </p>
+            <p>
+              亚马逊云科技 Heroes 通过各种方式分享知识，包括通过社交技术媒体、博客文章、开源项目和论坛进行在线分享，
+              或者亲自参加各种线下 Meetup 和线上直播等活动。
+            </p>
+            <p>
+              依据 Heroes 的不同擅长领域，他们被评为以下 Heroes：<br>
+              1. Community Heroes 2. Container Heroes 3. Data Heroes 4. DevTools Heroes<br>
+              5. Machine Learning Heroes 6. Serverless Heroes
+            </p>
+            
+            <div class="heroes-buttons">
+              <a href="https://builder.aws.com/connect/community/heroes" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">查看 Hero 专栏</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="heroes-image">
+          <img src={communityImages["Heroes"]} alt="Heroes" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Blogger Program Section -->
+    <section class="blogger-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="artistic-title-wrapper">
+            <h2 class="artistic-title blogger-title">技领云博主计划</h2>
+            <div class="title-accent blogger-accent"></div>
+          </div>
+        </div>
+        
+        <div class="blogger-intro">
+          <p>
+            技领云博主计划邀请全平台博主作为亚马逊云科技的「特邀作者」， 与亚马逊云科技携手同行，
+            通过各种方式分享亚马逊云科技产品、技术以及学习体验，为开发者与渴望提升云技能和考取云认证的技术用户们带来支持与帮助， 
+            为亚马逊云科技的社区注入更多活力与智慧。
+          </p>
+        </div>
+        
+        <div class="blogger-content">
+          <!-- 博主权益部分 - 参考原始布局 -->
+          <div class="blogger-benefits-section">
+            <div class="blogger-benefits-left">
+              <img src={communityImages["技领云博主"]} alt="博主计划" class="blogger-invite-img" />
+            </div>
+            
+            <div class="blogger-benefits-right">
+              <div class="benefits-header">
+                <img src={communityImages["博主权益"]} alt="权益图标" class="rights-img" />
+                <h3 class="rights-title">博主权益</h3>
+              </div>
+              
+              <div class="blogger-benefits-content">
+                <div class="benefits-row">
+                  <div class="benefit-item-inline">
+                    <h4 class="plan-title">官方署名</h4>
+                    <p class="benefit-desc">为您带来亚马逊云科技传播矩阵的流量曝光</p>
+                  </div>
+                  <div class="benefit-item-inline">
+                    <h4 class="plan-title">专业团队支持</h4>
+                    <p class="benefit-desc">配合协助输出文章、图片及视频等交付形式</p>
+                  </div>
+                </div>
+                
+                <div class="benefit-item-full">
+                  <h4 class="plan-title">官方背书</h4>
+                  <p class="benefit-desc">不限于在官方发起的活动及直播中出席特邀嘉宾、为您定制人物案例包装以及嘉宾卡片及专刊等</p>
+                </div>
+                
+                <div class="benefit-item-full">
+                  <h4 class="plan-title">创作奖励及评选激励</h4>
+                  <div class="benefit-desc">
+                    1.赠送官方数字化培训个人订阅一年(价值299美金)<br>
+                    2.不定期提供给博主粉丝的培训与认证50%折考试券<br>
+                    3.国内市场及社区活动演讲嘉宾及特权(视具体活动安排)<br>
+                    4.优先参与并解锁更多亚马逊云科技开发者项目及社区权益<br>
+                    5.精美亚马逊云科技周边礼品
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="blogger-apply">
+            <div class="apply-content">
+              <h3>亚马逊云科技官方特邀作者</h3>
+              <p>
+                技领云博主聚集了众多优秀的博主，通过文章、视频分享与亚马逊云科技之间的故事，
+                帮助全球开发者与渴望提升云技能和考取云认证的技术用户们带来支持与帮助，
+                助力越来越多的开发者与技术用户在云职场的道路上不断发展。
+                并通过个人影响力，邀请更多的开发者加入到亚马逊云科技的社区中，携手同行。
+              </p>
+
+            </div>
+            <div class="apply-image">
+              <img src={communityImages["技领云博主团队"]} alt="技领云博主团队" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+<style>
+  .about-page {
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Hero Banner */
+  .hero-banner {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 4rem 0;
+    margin-bottom: 4rem;
+  }
+
+  .banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .banner-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .banner-title-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .banner-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff9500 0%, #e67e22 50%, #d35400 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    position: relative;
+    text-shadow: 0 4px 8px rgba(255, 149, 0, 0.3);
+  }
+
+  .title-decoration {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #ff9500 0%, #e67e22 50%, #d35400 100%);
+    border-radius: 2px;
+    animation: slideIn 1s ease-out;
+  }
+
+  .title-decoration::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 8px;
+    background: #ff9500;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(255, 149, 0, 0.6);
+  }
+
+  @keyframes slideIn {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+    to {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+  .banner-description {
+    font-size: 1.125rem;
+    color: #4a5568;
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  .banner-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .btn {
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-block;
+    border: 2px solid transparent;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: #ff9500;
+    color: white;
+    border-color: #ff9500;
+  }
+
+  .btn-primary:hover {
+    background-color: #e67e22;
+    border-color: #e67e22;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: #ff9500;
+    border-color: #ff9500;
+  }
+
+  .btn-secondary:hover {
+    background-color: #ff9500;
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  .banner-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .banner-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Section Styles */
+  .section-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  /* Artistic Title Styles */
+  .artistic-title-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+
+  .artistic-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+  }
+
+  .title-accent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    border-radius: 1rem;
+    z-index: 1;
+    opacity: 0.1;
+    transition: all 0.3s ease;
+  }
+
+  /* Community Builder Styles */
+  .community-builder-title {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+  }
+
+  .builder-accent {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    animation: pulse 2s infinite;
+  }
+
+  /* Hero Styles */
+  .hero-title {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+  }
+
+  .hero-accent {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    animation: heroGlow 3s infinite alternate;
+  }
+
+  /* Blogger Styles */
+  .blogger-title {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(124, 58, 237, 0.3);
+  }
+
+  .blogger-accent {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    animation: bloggerFloat 4s ease-in-out infinite;
+  }
+
+  /* Animations */
+  @keyframes pulse {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.1;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.05);
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes heroGlow {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+      opacity: 0.1;
+      box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(5deg);
+      opacity: 0.2;
+      box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+    }
+  }
+
+  @keyframes bloggerFloat {
+    0%, 100% {
+      transform: translate(-50%, -50%) translateY(0px);
+      opacity: 0.1;
+    }
+    50% {
+      transform: translate(-50%, -50%) translateY(-5px);
+      opacity: 0.15;
+    }
+  }
+
+  /* Hover Effects */
+  .artistic-title-wrapper:hover .artistic-title {
+    transform: scale(1.05);
+  }
+
+  .artistic-title-wrapper:hover .title-accent {
+    opacity: 0.25;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .section-title-image {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title-image img {
+    max-height: 80px;
+    width: auto;
+  }
+
+
+
+  /* Leaders Section */
+  .leaders-section {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .leaders-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .leaders-intro p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+  }
+
+  .leaders-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .leader-card {
+    background: #f7fafc;
+    padding: 2rem;
+    border-radius: 1rem;
+    border-left: 4px solid #ff9500;
+  }
+
+  .leader-card h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .leader-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .leader-card li {
+    padding: 0.5rem 0;
+    color: #4a5568;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .leader-card li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #ff9500;
+    font-weight: bold;
+  }
+
+  /* Community Builder Section */
+  .community-builder-section {
+    padding: 4rem 0;
+    background: #f8fafc;
+  }
+
+  .builder-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .builder-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+  }
+
+  .builder-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .builder-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  /* Heroes Section */
+  .heroes-section {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .heroes-content {
+    margin-bottom: 2rem;
+  }
+
+  .heroes-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+  }
+
+  .heroes-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .heroes-image {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .heroes-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  /* Blogger Section */
+  .blogger-section {
+    padding: 4rem 0;
+    background: #f8fafc;
+  }
+
+  .blogger-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .blogger-intro p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .blogger-content {
+    display: grid;
+    gap: 3rem;
+  }
+
+  /* 博主权益部分 - 参考原始布局 */
+  .blogger-benefits-section {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .blogger-benefits-left {
+    flex: 0 0 300px;
+  }
+
+  .blogger-invite-img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  .blogger-benefits-right {
+    flex: 1;
+  }
+
+  .benefits-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .rights-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .rights-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0;
+  }
+
+  .blogger-benefits-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .benefits-row {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .benefit-item-inline {
+    flex: 1;
+  }
+
+  .benefit-item-full {
+    width: 100%;
+  }
+
+  .plan-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-desc {
+    font-size: 0.875rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .blogger-apply {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .apply-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .apply-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 2rem;
+  }
+
+  .apply-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .banner-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .banner-title {
+      font-size: 2.8rem;
+    }
+
+    .builder-content {
+      grid-template-columns: 1fr;
+    }
+
+    .blogger-apply {
+      grid-template-columns: 1fr;
+    }
+
+    .leaders-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-banner {
+      padding: 2rem 0;
+    }
+
+    .banner-title {
+      font-size: 2.2rem;
+    }
+
+    .banner-description {
+      font-size: 1rem;
+    }
+
+    .banner-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .artistic-title {
+      font-size: 2rem;
+      padding: 0.4rem 1.5rem;
+    }
+
+    .builder-buttons,
+    .heroes-buttons {
+      flex-direction: column;
+    }
+
+    .blogger-benefits-section {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .blogger-benefits-left {
+      flex: none;
+    }
+
+    .benefits-row {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .leaders-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .leader-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .banner-title {
+      font-size: 1.8rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+
+    .artistic-title {
+      font-size: 1.8rem;
+      padding: 0.3rem 1rem;
+    }
+
+    .artistic-decoration {
+      width: 110%;
+      height: 110%;
+    }
+
+    .activities-section,
+    .leaders-section,
+    .community-builder-section,
+    .heroes-section,
+    .blogger-section {
+      padding: 2rem 0;
+    }
+  }
+</style>

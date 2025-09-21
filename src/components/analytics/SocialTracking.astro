@@ -1,0 +1,169 @@
+---
+// 社交媒体分析追踪组件
+---
+
+<script>
+  // 社交媒体互动追踪
+  class SocialMediaTracker {
+    constructor() {
+      this.initTracking();
+    }
+    
+    initTracking() {
+      // 追踪社交媒体链接点击
+      document.addEventListener('click', (e) => {
+        const target = (e.target as HTMLElement)?.closest('[data-social-track]');
+        if (target) {
+          this.trackSocialClick(target);
+        }
+        
+        const shareButton = (e.target as HTMLElement)?.closest('.share-button');
+        if (shareButton) {
+          this.trackSocialShare(shareButton);
+        }
+      });
+      
+      // 追踪微信二维码显示
+      const wechatLinks = document.querySelectorAll('[data-platform="wechat"]');
+      wechatLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          this.trackEvent('wechat_qr_show', {
+            event_category: 'social_media',
+            event_label: 'qr_code_display'
+          });
+        });
+      });
+    }
+    
+    trackSocialClick(element: any) {
+      const platform = element.dataset.socialTrack || element.dataset.platform;
+      const url = element.href || element.dataset.url;
+      
+      this.trackEvent('social_click', {
+        social_network: platform,
+        social_action: 'click',
+        social_target: url,
+        event_category: 'social_media'
+      });
+      
+      // 发送自定义事件
+      this.sendCustomEvent('social_interaction', {
+        platform: platform,
+        action: 'click',
+        timestamp: Date.now()
+      });
+    }
+    
+    trackSocialShare(element: any) {
+      const platform = element.className.match(/share-(\w+)/)?.[1];
+      const url = window.location.href;
+      
+      this.trackEvent('share', {
+        method: platform,
+        content_type: 'page',
+        item_id: url,
+        event_category: 'social_media'
+      });
+    }
+    
+    trackEvent(eventName: any, parameters: any) {
+      // Google Analytics 4
+      if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, parameters);
+      }
+      
+      // 百度统计
+      if (typeof _hmt !== 'undefined') {
+        _hmt.push(['_trackEvent', parameters.event_category || 'social', eventName, parameters.social_network || parameters.method]);
+      }
+      
+      // 自定义分析
+      this.sendToCustomAnalytics(eventName, parameters);
+    }
+    
+    sendCustomEvent(eventType: any, data: any) {
+      // 分析功能已禁用
+      console.log('Analytics disabled:', eventType, data);
+    }
+    
+    sendToCustomAnalytics(event: any, data: any) {
+      // 可以集成其他分析服务
+      console.log('Social Analytics:', { event, data });
+    }
+    
+    // 追踪社交媒体转化
+    trackSocialConversion(platform: any, action: any) {
+      this.trackEvent('social_conversion', {
+        social_network: platform,
+        social_action: action,
+        event_category: 'conversion',
+        value: 1
+      });
+    }
+    
+    // 追踪分享成功
+    trackShareSuccess(platform: any, url: any) {
+      this.trackEvent('share_success', {
+        method: platform,
+        content_type: 'page',
+        item_id: url,
+        event_category: 'social_media'
+      });
+    }
+  }
+  
+  // 初始化追踪
+  let socialTracker: any;
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    socialTracker = new SocialMediaTracker();
+    
+    // 暴露全局方法
+    window.trackSocialConversion = (platform: any, action: any) => {
+      socialTracker.trackSocialConversion(platform, action);
+    };
+    
+    window.trackShareSuccess = (platform: any, url: any) => {
+      socialTracker.trackShareSuccess(platform, url);
+    };
+  });
+  
+  // 页面可见性变化追踪
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      // 页面隐藏时发送待发送的分析数据
+      if (socialTracker) {
+        socialTracker.sendCustomEvent('page_hidden', {
+          duration: Date.now() - (window.pageLoadTime || Date.now())
+        });
+      }
+    }
+  });
+  
+  // 记录页面加载时间
+  window.pageLoadTime = Date.now();
+</script>
+
+<!-- Google Analytics 4 (如果需要) -->
+<!-- 
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+-->
+
+<!-- 百度统计 (如果需要) -->
+<!--
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?YOUR_BAIDU_ANALYTICS_ID";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+-->

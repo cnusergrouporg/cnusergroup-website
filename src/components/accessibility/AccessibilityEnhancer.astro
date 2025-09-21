@@ -1,0 +1,42 @@
+---
+// 无障碍访问增强组件
+---
+
+<script>
+  // 无障碍访问增强功能已集成到全局脚本中
+  // 这个组件保持为空，避免重复加载
+</script>
+
+<!-- 无障碍访问相关的隐藏元素 -->
+<div id="aria-live-polite" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+<div id="aria-live-assertive" aria-live="assertive" aria-atomic="true" class="sr-only"></div>
+
+<!-- 跳转链接 -->
+<a href="#main-content" class="skip-link sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-blue-600 focus:text-white focus:px-4 focus:py-2 focus:rounded">
+  跳转到主要内容
+</a>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+</style>

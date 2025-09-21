@@ -1,0 +1,102 @@
+{
+  "cities": {
+    "beijing": {
+      "pc": "/images/cities/beijing-pc.png",
+      "mobile": "/images/cities/beijing-mobile.png"
+    },
+    "shanghai": {
+      "pc": "/images/cities/shanghai-pc.png",
+      "mobile": "/images/cities/shanghai-mobile.png"
+    },
+    "shenzhen": {
+      "pc": "/images/cities/shenzhen-pc.png",
+      "mobile": "/images/cities/shenzhen-mobile.png"
+    },
+    "wuhan": {
+      "pc": "/images/cities/wuhan-pc.png",
+      "mobile": "/images/cities/wuhan-mobile.png"
+    },
+    "xian": {
+      "pc": "/images/cities/xian-pc.png",
+      "mobile": "/images/cities/xian-mobile.png"
+    },
+    "changji": {
+      "pc": "/images/cities/changji-pc.png",
+      "mobile": "/images/cities/changji-mobile.png"
+    },
+    "chengdu": {
+      "pc": "/images/cities/chengdu-pc.png",
+      "mobile": "/images/cities/chengdu-mobile.png"
+    },
+    "lanzhou": {
+      "pc": "/images/cities/lanzhou-pc.png",
+      "mobile": "/images/cities/lanzhou-mobile.png"
+    },
+    "guangzhou": {
+      "pc": "/images/cities/guangzhou-pc.png",
+      "mobile": "/images/cities/guangzhou-mobile.png"
+    },
+    "fuzhou": {
+      "pc": "/images/cities/fuzhou-pc.png",
+      "mobile": "/images/cities/fuzhou-mobile.png"
+    },
+    "suzhou": {
+      "pc": "/images/cities/suzhou-pc.png",
+      "mobile": "/images/cities/suzhou-mobile.png"
+    },
+    "hangzhou": {
+      "pc": "/images/cities/hangzhou-pc.png",
+      "mobile": "/images/cities/hangzhou-mobile.png"
+    },
+    "hechi": {
+      "pc": "/images/cities/hechi-pc.png",
+      "mobile": "/images/cities/hechi-mobile.png"
+    },
+    "urumqi": {
+      "pc": "/images/cities/urumqi-pc.png",
+      "mobile": "/images/cities/urumqi-mobile.png"
+    },
+    "qingdao": {
+      "pc": "/images/cities/qingdao-pc.png",
+      "mobile": "/images/cities/qingdao-mobile.png"
+    },
+    "xiamen": {
+      "pc": "/images/cities/xiamen-pc.png",
+      "mobile": "/images/cities/xiamen-mobile.png"
+    },
+    "zhangjiakou": {
+      "pc": "/images/cities/zhangjiakou-pc.png",
+      "mobile": "/images/cities/zhangjiakou-mobile.png"
+    },
+    "hefei": {
+      "pc": "/images/cities/hefei-pc.png",
+      "mobile": "/images/cities/hefei-mobile.png"
+    }
+  },
+  "ui": {
+    "titleLeft": "/images/ui/title-left.png",
+    "titleRight": "/images/ui/title-right.png",
+    "heroBackground": "/images/ui/hero-background.png",
+    "heroHeaderDecoration": "/images/ui/hero-header-decoration.png",
+    "heroHeaderDecorationMobile": "/images/ui/hero-header-decoration-mobile.png",
+    "heroFooterDecoration": "/images/ui/hero-footer-decoration.png",
+    "heroFooterDecorationMobile": "/images/ui/hero-footer-decoration-mobile.png",
+    "communityCardBackground": "/images/ui/community-card-background.png"
+  },
+  "icons": {
+    "user": "/images/icons/user.png",
+    "volunteer": "/images/icons/volunteer.png",
+    "teacher": "/images/icons/teacher.png",
+    "certificate": "/images/icons/certificate.png",
+    "wechat": "/images/icons/wechat.png",
+    "weibo": "/images/icons/weibo.png",
+    "tiktok": "/images/icons/tiktok.png",
+    "bilibili": "/images/icons/bilibili.png",
+    "xiaohongshu": "/images/icons/xiaohongshu.png",
+    "freeCloud": "/images/icons/free-cloud.png",
+    "pytorch": "/images/icons/pytorch.png"
+  },
+  "qr": {
+    "wechatOfficial": "/images/qr/wechat-official.jpg"
+  }
+}

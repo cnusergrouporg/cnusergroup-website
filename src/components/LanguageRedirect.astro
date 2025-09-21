@@ -1,0 +1,40 @@
+---
+// 这个组件用于在客户端检测语言偏好并重定向
+---
+
+<script>
+  // 客户端语言检测和重定向
+  (function() {
+    // 检查当前路径是否已经有语言前缀
+    const currentPath = window.location.pathname;
+    const hasLangPrefix = /^\/(zh|en)(\/|$)/.test(currentPath);
+    
+    if (hasLangPrefix) {
+      return; // 已经有语言前缀，不需要重定向
+    }
+    
+    // 获取存储的语言偏好
+    const storedLang = localStorage.getItem('preferred-language');
+    
+    // 获取浏览器语言偏好
+    const browserLang = navigator.language.toLowerCase();
+    const isEnglish = browserLang.startsWith('en');
+    
+    // 确定目标语言
+    let targetLang = 'zh'; // 默认中文
+    
+    if (storedLang && (storedLang === 'en' || storedLang === 'zh')) {
+      targetLang = storedLang;
+    } else if (isEnglish) {
+      targetLang = 'en';
+    }
+    
+    // 如果目标语言不是中文，进行重定向
+    if (targetLang === 'en' && currentPath === '/') {
+      window.location.href = '/en/';
+    }
+    
+    // 存储语言偏好
+    localStorage.setItem('preferred-language', targetLang);
+  })();
+</script>

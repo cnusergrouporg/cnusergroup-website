@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CityDetail from '../../components/sections/CityDetail.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import { getLanguageFromUrl, getCityById, getLocalizedValue, t } from '../../utils';
+
+export async function getStaticPaths() {
+  const { getCities } = await import('../../utils');
+  const cities = getCities();
+  
+  return cities.map((city) => ({
+    params: { id: city.id },
+    props: { city }
+  }));
+}
+
+const { city } = Astro.props;
+const lang = getLanguageFromUrl(Astro.url);
+
+if (!city) {
+  return Astro.redirect('/404');
+}
+
+const cityName = getLocalizedValue(city.name, lang);
+const pageTitle = `${cityName} - ${t('cities.title', lang)}`;
+const pageDescription = getLocalizedValue(city.description, lang);
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Breadcrumb Navigation -->
+  <div class="bg-gray-50 py-4">
+    <div class="container-custom">
+      <Breadcrumb currentPath={Astro.url.pathname} lang={lang} />
+    </div>
+  </div>
+  
+  <!-- City Detail Content -->
+  <CityDetail city={city} lang={lang} />
+  
+  <!-- Back to Cities -->
+  <section class="py-8 bg-gray-50">
+    <div class="container-custom text-center">
+      <a 
+        href={lang === 'zh' ? '/cities' : '/en/cities'}
+        class="inline-flex items-center text-aws-orange hover:text-orange-600 transition-colors duration-200 font-medium"
+      >
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        {lang === 'zh' ? '返回城市列表' : 'Back to Cities'}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

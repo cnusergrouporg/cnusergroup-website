@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroBanner from '../components/sections/HeroBanner.astro';
+import GlobalCommunity from '../components/sections/GlobalCommunity.astro';
+import CommunityBuilding from '../components/sections/CommunityBuilding.astro';
+import CityCard from '../components/ui/CityCard.astro';
+import Button from '../components/ui/Button.astro';
+import { getLanguageFromUrl, t, getActiveCities } from '../utils';
+
+const lang = getLanguageFromUrl(Astro.url);
+
+// 获取前6个活跃城市用于首页展示
+const allCities = getActiveCities();
+const featuredCities = allCities.slice(0, 6);
+---
+
+<BaseLayout title={t('site.title', lang)}>
+  <!-- Hero Banner -->
+  <HeroBanner />
+  
+  <!-- Global Community Section -->
+  <GlobalCommunity />
+  
+  <!-- Featured Cities Section -->
+  <section class="py-16 lg:py-24 bg-gray-50">
+    <div class="container-custom">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <div class="flex items-center justify-center mb-6">
+          <img 
+            src={`${import.meta.env.BASE_URL}images/ui/title-left.png`}
+            alt="" 
+            class="h-8"
+          />
+          <h2 class="text-3xl lg:text-4xl font-bold text-aws-blue mx-6">
+            {t('cities.title', lang)}
+          </h2>
+          <img 
+            src={`${import.meta.env.BASE_URL}images/ui/title-right.png`}
+            alt="" 
+            class="h-8"
+          />
+        </div>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          {lang === 'zh' 
+            ? '探索全国各地的亚马逊云科技 User Group 社区，与本地开发者建立联系'
+            : 'Explore User Group communities across the country and connect with local developers'
+          }
+        </p>
+      </div>
+      
+      <!-- Featured Cities Grid -->
+      {featuredCities.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {featuredCities.map((city) => (
+            <CityCard 
+              city={city} 
+              lang={lang}
+              class="featured-city-card horizontal-layout-forced"
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-16">
+          <div class="text-gray-400 mb-4">
+            <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-600 mb-2">
+            {lang === 'zh' ? '城市社区即将推出' : 'City Communities Coming Soon'}
+          </h3>
+          <p class="text-gray-500">
+            {lang === 'zh' ? '我们正在建设更多城市的 User Group 社区' : 'We are building User Group communities in more cities'}
+          </p>
+        </div>
+      )}
+      
+      <!-- View All Cities Button -->
+      <div class="text-center">
+        <Button 
+          href={lang === 'zh' ? '/cities' : '/en/cities'}
+          variant="outline"
+          size="lg"
+          class="inline-flex items-center px-8 py-4 text-lg font-semibold"
+        >
+          {lang === 'zh' ? '查看所有城市' : 'View All Cities'}
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </Button>
+        
+        {allCities.length > 6 && (
+          <p class="text-sm text-gray-500 mt-4">
+            {lang === 'zh' 
+              ? `还有 ${allCities.length - 6} 个城市等你发现`
+              : `${allCities.length - 6} more cities to discover`
+            }
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Building Section -->
+  <CommunityBuilding />
+</BaseLayout>
+
+<style>
+  /* 首页城市社区展示强制使用左右布局 */
+  .horizontal-layout-forced .city_name {
+    flex-direction: row !important;
+    gap: 6px !important;
+  }
+
+  .horizontal-layout-forced .city_name > div:first-child {
+    font-size: 16px !important;
+  }
+
+  .horizontal-layout-forced .city_name > div:last-child {
+    font-size: 14px !important;
+  }
+
+  /* 响应式调整 */
+  @media (max-width: 768px) {
+    .horizontal-layout-forced .city_name {
+      gap: 4px !important;
+    }
+
+    .horizontal-layout-forced .city_name > div:first-child {
+      font-size: 15px !important;
+    }
+
+    .horizontal-layout-forced .city_name > div:last-child {
+      font-size: 13px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .horizontal-layout-forced .city_name > div:first-child {
+      font-size: 14px !important;
+    }
+
+    .horizontal-layout-forced .city_name > div:last-child {
+      font-size: 12px !important;
+    }
+  }
+</style>

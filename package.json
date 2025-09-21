@@ -1,0 +1,45 @@
+{
+  "name": "cnusergroup-website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "node scripts/validate-build.js && astro check && astro build && node scripts/build.js",
+    "build:ci": "node scripts/validate-build.js && astro check && astro build",
+    "preview": "astro preview",
+    "preview:prod": "node scripts/preview-production.js",
+    "pre-deploy": "node scripts/pre-deploy.js",
+    "validate": "node scripts/validate-build.js",
+    "perf:audit": "node scripts/performance-audit.js",
+    "perf:audit:ci": "node scripts/performance-audit.js http://localhost:4322",
+    "download:images": "node scripts/download-real-images.mjs",
+    "a11y:test": "playwright test tests/accessibility",
+    "optimize": "npm run perf:audit && npm run a11y:test",
+    "deploy": "npm run build && gh-pages -d dist",
+    "deploy:ready": "node scripts/deploy-ready.js",
+    "deploy:check": "node scripts/deploy-ready.js --check-only",
+    "deploy:verify": "node scripts/check-deployment.js",
+    "deploy:full": "node scripts/full-deploy.js",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.15.0",
+    "glob": "^11.0.3",
+    "js-yaml": "^4.1.0",
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.8.0",
+    "@types/js-yaml": "^4.0.8",
+    "@types/node": "^20.10.0",
+    "archiver": "^7.0.1",
+    "axe-core": "^4.8.0",
+    "chrome-launcher": "^1.1.0",
+    "gh-pages": "^6.3.0",
+    "lighthouse": "^11.0.0",
+    "typescript": "^5.9.2"
+  }
+}

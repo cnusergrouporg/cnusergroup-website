@@ -1,0 +1,104 @@
+{
+  "site": {
+    "title": "亚马逊云科技 User Group 社区",
+    "description": "连接全球云计算开发者，分享技术经验，推动创新发展"
+  },
+  "navigation": {
+    "home": "首页",
+    "cities": "城市社区",
+    "events": "活动",
+    "about": "关于我们",
+    "contact": "联系我们"
+  },
+  "hero": {
+    "title": "亚马逊云科技 User Group 社区",
+    "subtitle": "连接全球云计算开发者，分享技术经验，推动创新发展",
+    "cta": "加入我们"
+  },
+  "global": {
+    "title": "User Group 全球社区",
+    "description": "迄今为止，亚马逊云科技 User Group 社区全球已组建超过 470个组织、覆盖98个国家，共计50多万名成员。User Group 社区由对技术抱有高度热忱的开发者组成。",
+    "stats": {
+      "organizations": "470+",
+      "countries": "98",
+      "members": "50万+"
+    },
+    "cta": "了解User Group全球社区"
+  },
+  "cities": {
+    "title": "城市社区",
+    "subtitle": "探索全国各地的亚马逊云科技 User Group 社区，与本地开发者建立联系",
+    "viewDetails": "查看详情",
+    "viewAll": "查看所有城市",
+    "search": "搜索城市名称...",
+    "filter": {
+      "all": "所有城市",
+      "active": "活跃社区",
+      "north": "华北地区",
+      "east": "华东地区", 
+      "south": "华南地区",
+      "west": "西部地区"
+    }
+  },
+  "events": {
+    "title": "活动",
+    "subtitle": "参与我们的技术活动和社区聚会"
+  },
+  "about": {
+    "title": "关于我们",
+    "subtitle": "了解亚马逊云科技 User Group 社区"
+  },
+  "community": {
+    "title": "社区建设",
+    "applications": {
+      "leader": {
+        "title": "申请成为 User Group Leader",
+        "cta": "立即申请"
+      },
+      "volunteer": {
+        "title": "申请志愿者",
+        "cta": "立即申请"
+      },
+      "instructor": {
+        "title": "申请讲师",
+        "cta": "立即申请"
+      }
+    }
+  },
+  "social": {
+    "title": "关注我们",
+    "wechat": "微信",
+    "weibo": "微博",
+    "tiktok": "抖音",
+    "bilibili": "bilibili",
+    "xiaohongshu": "小红书",
+    "officialAccount": "扫码关注亚马逊云科技 User Group 公众号"
+  },
+  "links": {
+    "freeCloud": "免费上云",
+    "pytorch": "PyTorch User Case 收集表"
+  },
+  "footer": {
+    "copyright": "© 2025 亚马逊云科技 User Group 社区. 保留所有权利。",
+    "privacy": "隐私政策",
+    "terms": "使用条款"
+  },
+  "cityDetail": {
+    "contact": "联系方式",
+    "events": "近期活动",
+    "description": "社区介绍",
+    "leader": "社区负责人",
+    "wechat": "微信群",
+    "email": "邮箱",
+    "noEvents": "暂无活动",
+    "comingSoon": "即将推出"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "出错了",
+    "retry": "重试",
+    "back": "返回",
+    "home": "首页",
+    "more": "更多"
+  }
+}

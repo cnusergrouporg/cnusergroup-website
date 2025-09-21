@@ -1,0 +1,82 @@
+{
+  "platforms": {
+    "wechat": {
+      "name": "WeChat",
+      "displayName": {
+        "zh": "微信",
+        "en": "WeChat"
+      },
+      "color": "#07C160",
+      "icon": "/images/icons/wechat.png",
+      "qrCode": "/images/qr/wechat-official.jpg",
+      "id": "AWSUserGroup",
+      "description": {
+        "zh": "扫码关注亚马逊云科技 User Group 公众号",
+        "en": "Scan to follow User Group official account"
+      }
+    },
+    "weibo": {
+      "name": "Weibo",
+      "displayName": {
+        "zh": "微博",
+        "en": "Weibo"
+      },
+      "color": "#E6162D",
+      "icon": "/images/icons/weibo.png",
+      "url": "https://weibo.com/awscloud",
+      "handle": "@awscloud"
+    },
+    "tiktok": {
+      "name": "TikTok",
+      "displayName": {
+        "zh": "抖音",
+        "en": "TikTok"
+      },
+      "color": "#000000",
+      "icon": "/images/icons/tiktok.png",
+      "url": "#",
+      "handle": "@usergroup"
+    },
+    "bilibili": {
+      "name": "Bilibili",
+      "displayName": {
+        "zh": "哔哩哔哩",
+        "en": "Bilibili"
+      },
+      "color": "#00A1D6",
+      "icon": "/images/icons/bilibili.png",
+      "url": "https://space.bilibili.com/awscloud",
+      "handle": "AWS云科技"
+    },
+    "xiaohongshu": {
+      "name": "Xiaohongshu",
+      "displayName": {
+        "zh": "小红书",
+        "en": "Xiaohongshu"
+      },
+      "color": "#FF2442",
+      "icon": "/images/icons/xiaohongshu.png",
+      "url": "#",
+      "handle": "AWS用户组"
+    }
+  },
+  "sharing": {
+    "defaultPlatforms": ["wechat", "weibo", "qq", "copy"],
+    "trackingEnabled": true,
+    "analyticsEvents": {
+      "click": "social_click",
+      "share": "social_share",
+      "conversion": "social_conversion"
+    }
+  },
+  "content": {
+    "defaultShareText": {
+      "zh": "我在亚马逊云科技 User Group 社区发现了有趣的内容，快来看看吧！",
+      "en": "I found interesting content on User Group community, check it out!"
+    },
+    "hashtags": {
+      "zh": ["#AWS", "#云计算", "#技术分享", "#开发者社区"],
+      "en": ["#AWS", "#CloudComputing", "#TechSharing", "#DeveloperCommunity"]
+    }
+  }
+}

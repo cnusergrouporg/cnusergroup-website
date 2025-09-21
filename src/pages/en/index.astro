@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroBanner from '../../components/sections/HeroBanner.astro';
+import GlobalCommunity from '../../components/sections/GlobalCommunity.astro';
+import CityGrid from '../../components/sections/CityGrid.astro';
+import CommunityBuilding from '../../components/sections/CommunityBuilding.astro';
+import { getLanguageFromUrl, t } from '../../utils';
+
+const lang = getLanguageFromUrl(Astro.url);
+---
+
+<BaseLayout 
+  title={t('site.title', lang)}
+  description={t('site.description', lang)}
+>
+  <HeroBanner />
+  <GlobalCommunity />
+  <CityGrid lang={lang} showAll={false} forceHorizontalLayout={true} />
+  <CommunityBuilding />
+</BaseLayout>

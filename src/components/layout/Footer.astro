@@ -1,0 +1,60 @@
+---
+import { getLanguageFromUrl, t } from '../../utils';
+import SocialMediaLinks from '../ui/SocialMediaLinks.astro';
+import WeChatQRModal from '../ui/WeChatQRModal.astro';
+
+const lang = getLanguageFromUrl(Astro.url);
+
+
+---
+
+<footer id="footer" class="bg-gray-50 border-t border-gray-200" role="contentinfo">
+  <div class="container-custom py-12">
+    <!-- Main Footer Content -->
+    <div class="mb-8">
+      <!-- Social Media Links -->
+      <div class="text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-8">
+          {t('social.title', lang)}
+        </h3>
+        <SocialMediaLinks 
+          layout="horizontal" 
+          size="lg" 
+          showLabels={true}
+          class="justify-center"
+        />
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="border-t border-gray-200 pt-8">
+      <div class="flex flex-col items-center space-y-4">
+        <!-- Copyright - 居中显示 -->
+        <div class="text-center">
+          <p class="text-sm text-gray-600">
+            {t('footer.copyright', lang)}
+          </p>
+        </div>
+        
+        <!-- Links - 居中显示 -->
+        <div class="flex items-center space-x-6">
+          <a 
+            href={lang === 'zh' ? '/privacy' : '/en/privacy'}
+            class="text-sm text-gray-600 hover:text-orange-500 transition-colors duration-200"
+          >
+            {t('footer.privacy', lang)}
+          </a>
+          <a 
+            href={lang === 'zh' ? '/terms' : '/en/terms'}
+            class="text-sm text-gray-600 hover:text-orange-500 transition-colors duration-200"
+          >
+            {t('footer.terms', lang)}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 微信二维码弹窗 -->
+  <WeChatQRModal />
+</footer>

@@ -1,0 +1,204 @@
+---
+import { getLanguageFromUrl } from '../utils';
+
+interface Props {
+  fallback?: string;
+  showDetails?: boolean;
+}
+
+const { fallback, showDetails = false } = Astro.props;
+---
+
+<div class="error-boundary">
+  <slot />
+</div>
+
+<script>
+  // 全局错误处理
+  class ErrorBoundary {
+    constructor() {
+      this.initErrorHandling();
+    }
+    
+    initErrorHandling() {
+      // 捕获未处理的 Promise 错误
+      window.addEventListener('unhandledrejection', (event) => {
+        console.error('Unhandled promise rejection:', event.reason);
+        this.handleError(event.reason, 'Promise Rejection');
+        event.preventDefault();
+      });
+      
+      // 捕获 JavaScript 错误
+      window.addEventListener('error', (event) => {
+        console.error('JavaScript error:', event.error);
+        this.handleError(event.error, 'JavaScript Error');
+      });
+      
+      // 捕获资源加载错误
+      window.addEventListener('error', (event) => {
+        if (event.target !== window) {
+          this.handleResourceError(event.target, event);
+        }
+      }, true);
+    }
+    
+    handleError(error: any, type: any) {
+      const errorInfo = {
+        type: type,
+        message: error.message || error,
+        stack: error.stack,
+        timestamp: new Date().toISOString(),
+        url: window.location.href,
+        userAgent: navigator.userAgent
+      };
+      
+      // 发送错误报告
+      this.reportError(errorInfo);
+      
+      // 显示用户友好的错误信息
+      this.showErrorMessage(errorInfo);
+    }
+    
+    handleResourceError(element: any, event: any) {
+      const errorInfo = {
+        type: 'Resource Error',
+        element: element.tagName,
+        src: element.src || element.href,
+        message: `Failed to load ${element.tagName.toLowerCase()}`,
+        timestamp: new Date().toISOString(),
+        url: window.location.href
+      };
+      
+      // 处理图片加载错误
+      if (element.tagName === 'IMG') {
+        this.handleImageError(element);
+      }
+      
+      // 处理脚本加载错误
+      if (element.tagName === 'SCRIPT') {
+        this.handleScriptError(element);
+      }
+      
+      // 处理样式表加载错误
+      if (element.tagName === 'LINK' && element.rel === 'stylesheet') {
+        this.handleStyleError(element);
+      }
+      
+      this.reportError(errorInfo);
+    }
+    
+    handleImageError(img: any) {
+      // 设置默认占位图片
+      if (!img.dataset.errorHandled) {
+        img.dataset.errorHandled = 'true';
+        img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzljYTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuWbvueJh+aXoOazleWKoOi9vTwvdGV4dD48L3N2Zz4=';
+        img.alt = img.alt || 'Image not available';
+        img.classList.add('image-error');
+      }
+    }
+    
+    handleScriptError(script: any) {
+      console.warn(`Failed to load script: ${script.src}`);
+      // 可以尝试从备用 CDN 加载
+    }
+    
+    handleStyleError(link: any) {
+      console.warn(`Failed to load stylesheet: ${link.href}`);
+      // 可以加载备用样式表
+    }
+    
+    showErrorMessage(errorInfo: any) {
+      // 只在开发环境显示详细错误
+      if (import.meta.env.DEV) {
+        this.createErrorNotification(errorInfo);
+      } else {
+        // 生产环境显示简化错误信息
+        this.createSimpleErrorNotification();
+      }
+    }
+    
+    createErrorNotification(errorInfo: any) {
+      const notification = document.createElement('div');
+      notification.className = 'error-notification fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50 max-w-md';
+      notification.innerHTML = `
+        <div class="flex items-start justify-between">
+          <div class="flex-1">
+            <h4 class="font-semibold mb-1">${errorInfo.type}</h4>
+            <p class="text-sm opacity-90">${errorInfo.message}</p>
+            <button class="text-xs underline mt-2" onclick="this.parentElement.parentElement.nextElementSibling.classList.toggle('hidden')">
+              Show Details
+            </button>
+          </div>
+          <button onclick="this.closest('.error-notification').remove()" class="ml-2 text-white hover:text-gray-200">
+            ×
+          </button>
+        </div>
+        <div class="hidden mt-2 text-xs bg-red-600 p-2 rounded">
+          <pre class="whitespace-pre-wrap">${errorInfo.stack || 'No stack trace available'}</pre>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // 5秒后自动移除
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.remove();
+        }
+      }, 5000);
+    }
+    
+    createSimpleErrorNotification() {
+      const notification = document.createElement('div');
+      notification.className = 'error-notification fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50';
+      notification.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="text-sm">Something went wrong. Please refresh the page.</span>
+          <button onclick="this.closest('.error-notification').remove()" class="ml-2 text-white hover:text-gray-200">
+            ×
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.remove();
+        }
+      }, 3000);
+    }
+    
+    reportError(errorInfo: any) {
+      // 错误报告功能已禁用
+      console.warn('Error reported (analytics disabled):', errorInfo.message || 'Unknown error');
+    }
+  }
+  
+  // 初始化错误边界
+  document.addEventListener('DOMContentLoaded', () => {
+    new ErrorBoundary();
+  });
+</script>
+
+<style>
+  .error-notification {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .image-error {
+    background-color: #f3f4f6;
+    border: 1px dashed #d1d5db;
+  }
+</style>

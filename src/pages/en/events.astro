@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLanguageFromUrl, t } from '../../utils';
+
+const lang = getLanguageFromUrl(Astro.url);
+---
+
+<BaseLayout title={t('events.title', lang)}>
+  <div class="min-h-screen bg-gray-50 py-16">
+    <div class="container-custom">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          {t('events.title', lang)}
+        </h1>
+        <p class="text-xl text-gray-600 mb-8">
+          {t('events.subtitle', lang)}
+        </p>
+        <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+          <div class="text-6xl mb-4">🚧</div>
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+            {lang === 'zh' ? '页面建设中' : 'Page Under Construction'}
+          </h2>
+          <p class="text-gray-600 mb-6">
+            {lang === 'zh' 
+              ? '我们正在努力为您准备精彩的活动内容，敬请期待！' 
+              : 'We are working hard to prepare exciting event content for you. Stay tuned!'}
+          </p>
+          <a 
+            href={lang === 'zh' ? '/' : '/en'}
+            class="inline-flex items-center px-6 py-3 bg-aws-orange text-white rounded-lg hover:bg-orange-600 transition-colors duration-200"
+          >
+            {lang === 'zh' ? '返回首页' : 'Back to Home'}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

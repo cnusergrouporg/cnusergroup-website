@@ -1,0 +1,16 @@
+---
+import { getLanguageFromUrl, t } from '@/utils';
+import type { Language } from '@/types';
+
+interface Props {
+  key: string;
+  lang?: Language;
+  fallback?: string;
+}
+
+const { key, lang, fallback } = Astro.props;
+const currentLang = lang || getLanguageFromUrl(Astro.url);
+const translatedText = t(key, currentLang) || fallback || key;
+---
+
+{translatedText}

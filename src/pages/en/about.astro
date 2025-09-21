@@ -1,0 +1,891 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLanguageFromUrl, t } from '../../utils';
+import communityImages from '../../data/community-images.json';
+
+const lang = getLanguageFromUrl(Astro.url);
+---
+
+<BaseLayout title={t('about.title', lang)}>
+  <main class="about-page">
+    <!-- Hero Banner Section -->
+    <section class="hero-banner">
+      <div class="banner-content">
+        <div class="banner-left">
+          <div class="banner-title-wrapper">
+            <div class="banner-title">User Group</div>
+            <div class="title-decoration"></div>
+          </div>
+          <div class="banner-description">
+            AWS User Groups (UG) global community is composed of developers passionate about technology, providing a technical exchange and sharing community for developers to learn from each other, share technical practices, and advance their training. Community gatherings bring together AWS technical developers, partners, technical consultants, and technology enthusiasts to share their passion for technology. We provide autonomous operating space for User Group communities in various regions and offer rich activity resources and technical consulting for community leaders. Currently, User Group communities are spread across more than 100 countries worldwide, with over 470 organizations and more than 500,000 members. In China, UG communities have covered 14 cities including Beijing, Shanghai, Shenzhen, Chengdu, Hangzhou, Hefei, Chongqing, and Wuhan.
+          </div>
+          <div class="banner-buttons">
+            <a href="/en/cities" class="btn btn-primary">View User Groups</a>
+            <a href="https://builder.aws.com/connect/community/user-groups" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Learn More</a>
+          </div>
+        </div>
+        <div class="banner-right">
+          <img src={communityImages["User Group"]} alt="User Group" class="banner-image" />
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+    <!-- Leaders Section -->
+    <section class="leaders-section" id="leaders">
+      <div class="container">
+        <div class="section-title-image">
+          <img src={communityImages["优秀领导者"]} alt="Outstanding Leaders" />
+        </div>
+        
+        <div class="leaders-content">
+          <div class="leaders-intro">
+            <p>
+              We provide autonomous operating space for UG communities in various regions and offer rich activity resources and technical consulting for community leaders. 
+              We are looking for passionate and energetic UGLs, expecting developers like you to join us to expand our technical community in China. 
+              If your city has not yet established a User Group community, technology enthusiasts are welcome to apply to establish a new city User Group community.
+            </p>
+
+          </div>
+          
+          <div class="leaders-cards">
+            <div class="leader-card">
+              <h4>What should I do if I become a UGL?</h4>
+              <ul>
+                <li>Work with fellow UGLs in the same city to apply for planning and organizing activities, with the support of AWS official activity platform to help you organize more exciting activities, both offline and online can be customized.</li>
+                <li>Participate in determining activity themes and venues, interactive promotion methods, recruiting speakers, and connecting with AWS senior instructors and other activity details.</li>
+                <li>Get the latest AWS information and releases, enjoy exclusive resources and benefits, and pass them on to UG partners in the same city.</li>
+                <li>As the main contact person and bridge connecting AWS and UG, regularly provide feedback on member dynamics and suggestions.</li>
+              </ul>
+            </div>
+            
+            <div class="leader-card">
+              <h4>What benefits will I enjoy if I become a UGL?</h4>
+              <ul>
+                <li>Full-channel promotion of UG activities and information;</li>
+                <li>Outstanding UGLs can get tickets to technical conferences in Japan or the United States and free accommodation</li>
+                <li>Direct access to cloud innovation programs and a certain amount of Amazon Web Services Credit;</li>
+                <li>User Group customized gifts</li>
+                <li>Annual free AWS certification exam opportunities and a certain number of discount vouchers to incentivize UG volunteers;</li>
+                <li>More incentive programs coming soon</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Builder Section -->
+    <section class="community-builder-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="artistic-title-wrapper">
+            <h2 class="artistic-title community-builder-title">Community Builder</h2>
+            <div class="title-accent builder-accent"></div>
+          </div>
+        </div>
+        
+        <div class="builder-content">
+          <div class="builder-text">
+            <p>
+              The AWS Community Builders program provides technical resources, mentorship, and networking opportunities for AWS technical enthusiasts and emerging thought leaders who are passionate about sharing knowledge and eager to connect with the technical community. To connect with AWS Developer Relations teams, product teams, AWS Heroes, and the AWS community.
+            </p>
+            <p>
+              Anyone over 18 years old who is interested in AWS can apply to become an AWS Community Builder. There will be two application review opportunities each year. 
+              The application criteria are not singular - as long as you can prove that you have passion, interest, and ability to participate, it is recommended to attach relevant technical content you have participated in when applying.
+            </p>
+            
+            <div class="builder-buttons">
+              <a href="https://builder.aws.com/connect/community/community-builders" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View Builder Column</a>
+            </div>
+          </div>
+          
+          <div class="builder-image">
+            <img src={communityImages["Community Builder"]} alt="Community Builder" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Heroes Section -->
+    <section class="heroes-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="artistic-title-wrapper">
+            <h2 class="artistic-title hero-title">Hero</h2>
+            <div class="title-accent hero-accent"></div>
+          </div>
+        </div>
+        
+        <div class="heroes-content">
+          <div class="heroes-text">
+            <p>
+              The AWS Heroes program is one of the most important components of the community. This program recognizes a vibrant global group of AWS experts whose passion for knowledge sharing has had a real impact in the community.
+            </p>
+            <p>
+              AWS Heroes share knowledge in various ways, including online sharing through social technical media, blog posts, open source projects, and forums, or personally participating in various offline Meetups and online live streaming activities.
+            </p>
+            <p>
+              Based on Heroes' different areas of expertise, they are rated as the following Heroes:<br>
+              1. Community Heroes 2. Container Heroes 3. Data Heroes 4. DevTools Heroes<br>
+              5. Machine Learning Heroes 6. Serverless Heroes
+            </p>
+            
+            <div class="heroes-buttons">
+              <a href="https://builder.aws.com/connect/community/heroes" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View Hero Column</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="heroes-image">
+          <img src={communityImages["Heroes"]} alt="Heroes" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Blogger Program Section -->
+    <section class="blogger-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="artistic-title-wrapper">
+            <h2 class="artistic-title blogger-title">Cloud Blogger Program</h2>
+            <div class="title-accent blogger-accent"></div>
+          </div>
+        </div>
+        
+        <div class="blogger-intro">
+          <p>
+            The Cloud Blogger Program invites bloggers from all platforms to serve as AWS "featured authors", working hand in hand with AWS to share AWS products, 
+            technologies, and learning experiences in various ways, providing support and assistance to developers and technical users who aspire to improve cloud skills and obtain cloud certifications, 
+            injecting more vitality and wisdom into the AWS community.
+          </p>
+        </div>
+        
+        <div class="blogger-content">
+          <!-- Blogger Benefits Section - Based on Original Layout -->
+          <div class="blogger-benefits-section">
+            <div class="blogger-benefits-left">
+              <img src={communityImages["技领云博主"]} alt="Blogger Program" class="blogger-invite-img" />
+            </div>
+            
+            <div class="blogger-benefits-right">
+              <div class="benefits-header">
+                <img src={communityImages["博主权益"]} alt="Benefits Icon" class="rights-img" />
+                <h3 class="rights-title">Blogger Benefits</h3>
+              </div>
+              
+              <div class="blogger-benefits-content">
+                <div class="benefits-row">
+                  <div class="benefit-item-inline">
+                    <h4 class="plan-title">Official Attribution</h4>
+                    <p class="benefit-desc">Bring you traffic exposure from AWS communication matrix</p>
+                  </div>
+                  <div class="benefit-item-inline">
+                    <h4 class="plan-title">Professional Team Support</h4>
+                    <p class="benefit-desc">Cooperate and assist in outputting articles, images, videos and other delivery forms</p>
+                  </div>
+                </div>
+                
+                <div class="benefit-item-full">
+                  <h4 class="plan-title">Official Endorsement</h4>
+                  <p class="benefit-desc">Including but not limited to appearing as special guests in official events and live broadcasts, customizing character case packaging and guest cards and special issues for you</p>
+                </div>
+                
+                <div class="benefit-item-full">
+                  <h4 class="plan-title">Creation Rewards and Selection Incentives</h4>
+                  <div class="benefit-desc">
+                    1. Free official digital training personal subscription for one year (worth $299)<br>
+                    2. Irregular provision of 50% discount exam vouchers for training and certification to blogger fans<br>
+                    3. Domestic market and community event speaker privileges (depending on specific event arrangements)<br>
+                    4. Priority participation and unlock more AWS developer programs and community benefits<br>
+                    5. Exquisite AWS peripheral gifts
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="blogger-apply">
+            <div class="apply-content">
+              <h3>AWS Official Featured Authors</h3>
+              <p>
+                The Cloud Blogger Program brings together many excellent bloggers who share stories with AWS through articles and videos, 
+                helping global developers and technical users who aspire to improve cloud skills and obtain cloud certifications, 
+                assisting more and more developers and technical users to continuously develop on the cloud career path. 
+                Through personal influence, invite more developers to join the AWS community and work together.
+              </p>
+
+            </div>
+            <div class="apply-image">
+              <img src={communityImages["技领云博主团队"]} alt="Cloud Blogger Team" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .about-page {
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Hero Banner */
+  .hero-banner {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 4rem 0;
+    margin-bottom: 4rem;
+  }
+
+  .banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .banner-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .banner-title-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .banner-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff9500 0%, #e67e22 50%, #d35400 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    position: relative;
+    text-shadow: 0 4px 8px rgba(255, 149, 0, 0.3);
+  }
+
+  .title-decoration {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #ff9500 0%, #e67e22 50%, #d35400 100%);
+    border-radius: 2px;
+    animation: slideIn 1s ease-out;
+  }
+
+  .title-decoration::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 8px;
+    background: #ff9500;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(255, 149, 0, 0.6);
+  }
+
+  @keyframes slideIn {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+    to {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+  .banner-description {
+    font-size: 1.125rem;
+    color: #4a5568;
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  .banner-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .btn {
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-block;
+    border: 2px solid transparent;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: #ff9500;
+    color: white;
+    border-color: #ff9500;
+  }
+
+  .btn-primary:hover {
+    background-color: #e67e22;
+    border-color: #e67e22;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: #ff9500;
+    border-color: #ff9500;
+  }
+
+  .btn-secondary:hover {
+    background-color: #ff9500;
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  .banner-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .banner-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Section Styles */
+  .section-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  /* Artistic Title Styles */
+  .artistic-title-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+
+  .artistic-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+  }
+
+  .title-accent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    border-radius: 1rem;
+    z-index: 1;
+    opacity: 0.1;
+    transition: all 0.3s ease;
+  }
+
+  /* Community Builder Styles */
+  .community-builder-title {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+  }
+
+  .builder-accent {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    animation: pulse 2s infinite;
+  }
+
+  /* Hero Styles */
+  .hero-title {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+  }
+
+  .hero-accent {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    animation: heroGlow 3s infinite alternate;
+  }
+
+  /* Blogger Styles */
+  .blogger-title {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(124, 58, 237, 0.3);
+  }
+
+  .blogger-accent {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    animation: bloggerFloat 4s ease-in-out infinite;
+  }
+
+  /* Animations */
+  @keyframes pulse {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.1;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.05);
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes heroGlow {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+      opacity: 0.1;
+      box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(5deg);
+      opacity: 0.2;
+      box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+    }
+  }
+
+  @keyframes bloggerFloat {
+    0%, 100% {
+      transform: translate(-50%, -50%) translateY(0px);
+      opacity: 0.1;
+    }
+    50% {
+      transform: translate(-50%, -50%) translateY(-5px);
+      opacity: 0.15;
+    }
+  }
+
+  /* Hover Effects */
+  .artistic-title-wrapper:hover .artistic-title {
+    transform: scale(1.05);
+  }
+
+  .artistic-title-wrapper:hover .title-accent {
+    opacity: 0.25;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .section-title-image {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title-image img {
+    max-height: 80px;
+    width: auto;
+  }
+
+
+
+  /* Leaders Section */
+  .leaders-section {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .leaders-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .leaders-intro p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+  }
+
+  .leaders-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .leader-card {
+    background: #f7fafc;
+    padding: 2rem;
+    border-radius: 1rem;
+    border-left: 4px solid #ff9500;
+  }
+
+  .leader-card h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .leader-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .leader-card li {
+    padding: 0.5rem 0;
+    color: #4a5568;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .leader-card li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #ff9500;
+    font-weight: bold;
+  }
+
+  /* Community Builder Section */
+  .community-builder-section {
+    padding: 4rem 0;
+    background: #f8fafc;
+  }
+
+  .builder-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .builder-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+  }
+
+  .builder-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .builder-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  /* Heroes Section */
+  .heroes-section {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .heroes-content {
+    margin-bottom: 2rem;
+  }
+
+  .heroes-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+  }
+
+  .heroes-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .heroes-image {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .heroes-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  /* Blogger Section */
+  .blogger-section {
+    padding: 4rem 0;
+    background: #f8fafc;
+  }
+
+  .blogger-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .blogger-intro p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .blogger-content {
+    display: grid;
+    gap: 3rem;
+  }
+
+  /* Blogger Benefits Section - Based on Original Layout */
+  .blogger-benefits-section {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .blogger-benefits-left {
+    flex: 0 0 300px;
+  }
+
+  .blogger-invite-img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  .blogger-benefits-right {
+    flex: 1;
+  }
+
+  .benefits-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .rights-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .rights-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0;
+  }
+
+  .blogger-benefits-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .benefits-row {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .benefit-item-inline {
+    flex: 1;
+  }
+
+  .benefit-item-full {
+    width: 100%;
+  }
+
+  .plan-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-desc {
+    font-size: 0.875rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .blogger-apply {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .apply-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .apply-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 2rem;
+  }
+
+  .apply-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .banner-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .banner-title {
+      font-size: 2.8rem;
+    }
+
+    .builder-content {
+      grid-template-columns: 1fr;
+    }
+
+    .blogger-apply {
+      grid-template-columns: 1fr;
+    }
+
+    .leaders-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-banner {
+      padding: 2rem 0;
+    }
+
+    .banner-title {
+      font-size: 2.2rem;
+    }
+
+    .banner-description {
+      font-size: 1rem;
+    }
+
+    .banner-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .artistic-title {
+      font-size: 2rem;
+      padding: 0.4rem 1.5rem;
+    }
+
+    .builder-buttons,
+    .heroes-buttons {
+      flex-direction: column;
+    }
+
+    .blogger-benefits-section {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .blogger-benefits-left {
+      flex: none;
+    }
+
+    .benefits-row {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .leaders-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .leader-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .banner-title {
+      font-size: 1.8rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+
+    .artistic-title {
+      font-size: 1.8rem;
+      padding: 0.3rem 1rem;
+    }
+
+    .artistic-decoration {
+      width: 110%;
+      height: 110%;
+    }
+
+    .activities-section,
+    .leaders-section,
+    .community-builder-section,
+    .heroes-section,
+    .blogger-section {
+      padding: 2rem 0;
+    }
+  }
+</style>

@@ -1,0 +1,434 @@
+[
+  {
+    "id": "beijing",
+    "name": {
+      "zh": "北京",
+      "en": "Beijing"
+    },
+    "logo": "/images/cities/beijing-pc.png",
+    "logoMobile": "/images/cities/beijing-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "北京 亚马逊云科技 User Group 是中国最活跃的云计算技术社区之一，汇聚了众多云计算专家和开发者。",
+      "en": "Beijing User Group is one of the most active cloud computing communities in China, bringing together numerous cloud experts and developers."
+    },
+    "contact": {
+      "wechat": "beijing-ug",
+      "email": "beijing@cnusergroup.org",
+      "leader": "张三"
+    },
+    "stats": {
+      "members": 280,
+      "events": 45,
+      "founded": 2019
+    }
+  },
+  {
+    "id": "shanghai",
+    "name": {
+      "zh": "上海",
+      "en": "Shanghai"
+    },
+    "logo": "/images/cities/shanghai-pc.png",
+    "logoMobile": "/images/cities/shanghai-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "上海 亚马逊云科技 User Group 致力于为上海地区的开发者提供最新的云计算技术分享和交流平台。",
+      "en": "Shanghai User Group is dedicated to providing developers in Shanghai with the latest cloud computing technology sharing and communication platform."
+    },
+    "contact": {
+      "wechat": "shanghai-ug",
+      "email": "shanghai@cnusergroup.org",
+      "leader": "李四"
+    },
+    "stats": {
+      "members": 320,
+      "events": 52,
+      "founded": 2018
+    }
+  },
+  {
+    "id": "shenzhen",
+    "name": {
+      "zh": "深圳",
+      "en": "Shenzhen"
+    },
+    "logo": "/images/cities/shenzhen-pc.png",
+    "logoMobile": "/images/cities/shenzhen-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "深圳 亚马逊云科技 User Group 聚焦于创新技术和实践，为深圳科技企业提供云计算解决方案交流。",
+      "en": "Shenzhen User Group focuses on innovative technologies and practices, providing cloud computing solution exchanges for Shenzhen tech companies."
+    },
+    "contact": {
+      "wechat": "shenzhen-ug",
+      "email": "shenzhen@cnusergroup.org",
+      "leader": "王五"
+    },
+    "stats": {
+      "members": 195,
+      "events": 38,
+      "founded": 2020
+    }
+  },
+  {
+    "id": "wuhan",
+    "name": {
+      "zh": "武汉",
+      "en": "Wuhan"
+    },
+    "logo": "/images/cities/wuhan-pc.png",
+    "logoMobile": "/images/cities/wuhan-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "武汉 亚马逊云科技 User Group 服务于华中地区的云计算爱好者，推动本地云技术发展。",
+      "en": "Wuhan User Group serves cloud computing enthusiasts in Central China, promoting local cloud technology development."
+    },
+    "contact": {
+      "wechat": "wuhan-ug",
+      "email": "wuhan@cnusergroup.org",
+      "leader": "赵六"
+    },
+    "stats": {
+      "members": 165,
+      "events": 28,
+      "founded": 2020
+    }
+  },
+  {
+    "id": "xian",
+    "name": {
+      "zh": "西安",
+      "en": "Xi'an"
+    },
+    "logo": "/images/cities/xian-pc.png",
+    "logoMobile": "/images/cities/xian-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "西安 亚马逊云科技 User Group 连接古都与现代科技，为西北地区提供云计算技术支持。",
+      "en": "Xi'an User Group connects the ancient capital with modern technology, providing cloud computing technical support for Northwest China."
+    },
+    "contact": {
+      "wechat": "xian-ug",
+      "email": "xian@cnusergroup.org",
+      "leader": "孙七"
+    },
+    "stats": {
+      "members": 142,
+      "events": 22,
+      "founded": 2021
+    }
+  },
+  {
+    "id": "changji",
+    "name": {
+      "zh": "昌吉",
+      "en": "Changji"
+    },
+    "logo": "/images/cities/changji-pc.png",
+    "logoMobile": "/images/cities/changji-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "昌吉 亚马逊云科技 User Group 致力于推动新疆地区云计算技术的普及和应用。",
+      "en": "Changji User Group is committed to promoting the popularization and application of cloud computing technology in Xinjiang."
+    },
+    "contact": {
+      "wechat": "changji-ug",
+      "email": "changji@cnusergroup.org",
+      "leader": "周八"
+    },
+    "stats": {
+      "members": 85,
+      "events": 15,
+      "founded": 2022
+    }
+  },
+  {
+    "id": "chengdu",
+    "name": {
+      "zh": "成都",
+      "en": "Chengdu"
+    },
+    "logo": "/images/cities/chengdu-pc.png",
+    "logoMobile": "/images/cities/chengdu-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "成都 亚马逊云科技 User Group 服务于西南地区，促进云计算技术在当地的发展和应用。",
+      "en": "Chengdu User Group serves Southwest China, promoting the development and application of cloud computing technology locally."
+    },
+    "contact": {
+      "wechat": "chengdu-ug",
+      "email": "chengdu@cnusergroup.org",
+      "leader": "吴九"
+    },
+    "stats": {
+      "members": 210,
+      "events": 35,
+      "founded": 2019
+    }
+  },
+  {
+    "id": "lanzhou",
+    "name": {
+      "zh": "兰州",
+      "en": "Lanzhou"
+    },
+    "logo": "/images/cities/lanzhou-pc.png",
+    "logoMobile": "/images/cities/lanzhou-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "兰州 亚马逊云科技 User Group 为西北地区的开发者提供云计算学习和交流的平台。",
+      "en": "Lanzhou User Group provides a platform for developers in Northwest China to learn and exchange cloud computing knowledge."
+    },
+    "contact": {
+      "wechat": "lanzhou-ug",
+      "email": "lanzhou@cnusergroup.org",
+      "leader": "郑十"
+    },
+    "stats": {
+      "members": 95,
+      "events": 18,
+      "founded": 2021
+    }
+  },
+  {
+    "id": "guangzhou",
+    "name": {
+      "zh": "广州",
+      "en": "Guangzhou"
+    },
+    "logo": "/images/cities/guangzhou-pc.png",
+    "logoMobile": "/images/cities/guangzhou-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "广州 亚马逊云科技 User Group 连接华南地区的云计算专业人士，推动技术创新。",
+      "en": "Guangzhou User Group connects cloud computing professionals in South China, driving technological innovation."
+    },
+    "contact": {
+      "wechat": "guangzhou-ug",
+      "email": "guangzhou@cnusergroup.org",
+      "leader": "陈一"
+    },
+    "stats": {
+      "members": 245,
+      "events": 41,
+      "founded": 2019
+    }
+  },
+  {
+    "id": "fuzhou",
+    "name": {
+      "zh": "福州",
+      "en": "Fuzhou"
+    },
+    "logo": "/images/cities/fuzhou-pc.png",
+    "logoMobile": "/images/cities/fuzhou-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "福州 亚马逊云科技 User Group 为福建地区的技术爱好者提供云计算知识分享平台。",
+      "en": "Fuzhou User Group provides a cloud computing knowledge sharing platform for tech enthusiasts in Fujian."
+    },
+    "contact": {
+      "wechat": "fuzhou-ug",
+      "email": "fuzhou@cnusergroup.org",
+      "leader": "林二"
+    },
+    "stats": {
+      "members": 128,
+      "events": 24,
+      "founded": 2020
+    }
+  },
+  {
+    "id": "suzhou",
+    "name": {
+      "zh": "苏州",
+      "en": "Suzhou"
+    },
+    "logo": "/images/cities/suzhou-pc.png",
+    "logoMobile": "/images/cities/suzhou-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "苏州 亚马逊云科技 User Group 服务于长三角地区，促进云计算技术的交流与合作。",
+      "en": "Suzhou User Group serves the Yangtze River Delta region, promoting cloud computing technology exchange and cooperation."
+    },
+    "contact": {
+      "wechat": "suzhou-ug",
+      "email": "suzhou@cnusergroup.org",
+      "leader": "黄三"
+    },
+    "stats": {
+      "members": 175,
+      "events": 31,
+      "founded": 2020
+    }
+  },
+  {
+    "id": "hangzhou",
+    "name": {
+      "zh": "杭州",
+      "en": "Hangzhou"
+    },
+    "logo": "/images/cities/hangzhou-pc.png",
+    "logoMobile": "/images/cities/hangzhou-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "杭州 亚马逊云科技 User Group 汇聚互联网之都的技术精英，推动云计算创新发展。",
+      "en": "Hangzhou User Group brings together tech elites from the Internet capital, driving innovative development in cloud computing."
+    },
+    "contact": {
+      "wechat": "hangzhou-ug",
+      "email": "hangzhou@cnusergroup.org",
+      "leader": "何四"
+    },
+    "stats": {
+      "members": 265,
+      "events": 48,
+      "founded": 2018
+    }
+  },
+  {
+    "id": "hechi",
+    "name": {
+      "zh": "河池",
+      "en": "Hechi"
+    },
+    "logo": "/images/cities/hechi-pc.png",
+    "logoMobile": "/images/cities/hechi-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "河池 亚马逊云科技 User Group 致力于推动广西地区云计算技术的发展和普及。",
+      "en": "Hechi User Group is committed to promoting the development and popularization of cloud computing technology in Guangxi."
+    },
+    "contact": {
+      "wechat": "hechi-ug",
+      "email": "hechi@cnusergroup.org",
+      "leader": "梁五"
+    },
+    "stats": {
+      "members": 72,
+      "events": 12,
+      "founded": 2022
+    }
+  },
+  {
+    "id": "urumqi",
+    "name": {
+      "zh": "乌鲁木齐",
+      "en": "Urumqi"
+    },
+    "logo": "/images/cities/urumqi-pc.png",
+    "logoMobile": "/images/cities/urumqi-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "乌鲁木齐 亚马逊云科技 User Group 为新疆地区提供云计算技术支持和社区服务。",
+      "en": "Urumqi User Group provides cloud computing technical support and community services for Xinjiang region."
+    },
+    "contact": {
+      "wechat": "urumqi-ug",
+      "email": "urumqi@cnusergroup.org",
+      "leader": "马六"
+    },
+    "stats": {
+      "members": 108,
+      "events": 19,
+      "founded": 2021
+    }
+  },
+  {
+    "id": "qingdao",
+    "name": {
+      "zh": "青岛",
+      "en": "Qingdao"
+    },
+    "logo": "/images/cities/qingdao-pc.png",
+    "logoMobile": "/images/cities/qingdao-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "青岛 亚马逊云科技 User Group 服务于山东半岛地区，推动海洋城市的云计算发展。",
+      "en": "Qingdao User Group serves the Shandong Peninsula region, promoting cloud computing development in the coastal city."
+    },
+    "contact": {
+      "wechat": "qingdao-ug",
+      "email": "qingdao@cnusergroup.org",
+      "leader": "刘七"
+    },
+    "stats": {
+      "members": 156,
+      "events": 27,
+      "founded": 2020
+    }
+  },
+  {
+    "id": "xiamen",
+    "name": {
+      "zh": "厦门",
+      "en": "Xiamen"
+    },
+    "logo": "/images/cities/xiamen-pc.png",
+    "logoMobile": "/images/cities/xiamen-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "厦门 亚马逊云科技 User Group 为海峡西岸经济区提供云计算技术交流平台。",
+      "en": "Xiamen User Group provides a cloud computing technology exchange platform for the West Taiwan Strait Economic Zone."
+    },
+    "contact": {
+      "wechat": "xiamen-ug",
+      "email": "xiamen@cnusergroup.org",
+      "leader": "蔡八"
+    },
+    "stats": {
+      "members": 134,
+      "events": 23,
+      "founded": 2020
+    }
+  },
+  {
+    "id": "zhangjiakou",
+    "name": {
+      "zh": "张家口",
+      "en": "Zhangjiakou"
+    },
+    "logo": "/images/cities/zhangjiakou-pc.png",
+    "logoMobile": "/images/cities/zhangjiakou-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "张家口 亚马逊云科技 User Group 服务于京津冀地区，推动冬奥城市的技术发展。",
+      "en": "Zhangjiakou User Group serves the Beijing-Tianjin-Hebei region, promoting technological development in the Winter Olympics city."
+    },
+    "contact": {
+      "wechat": "zhangjiakou-ug",
+      "email": "zhangjiakou@cnusergroup.org",
+      "leader": "韩九"
+    },
+    "stats": {
+      "members": 89,
+      "events": 16,
+      "founded": 2021
+    }
+  },
+  {
+    "id": "hefei",
+    "name": {
+      "zh": "合肥",
+      "en": "Hefei"
+    },
+    "logo": "/images/cities/hefei-pc.png",
+    "logoMobile": "/images/cities/hefei-mobile.png",
+    "active": true,
+    "description": {
+      "zh": "合肥 亚马逊云科技 User Group 为安徽地区的科技创新提供云计算技术支持。",
+      "en": "Hefei User Group provides cloud computing technical support for technological innovation in Anhui province."
+    },
+    "contact": {
+      "wechat": "hefei-ug",
+      "email": "hefei@cnusergroup.org",
+      "leader": "冯十"
+    },
+    "stats": {
+      "members": 187,
+      "events": 33,
+      "founded": 2019
+    }
+  }
+]

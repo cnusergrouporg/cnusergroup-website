@@ -1,0 +1,92 @@
+site:
+  title:
+    zh: "亚马逊云科技 User Group 社区"
+    en: "User Group Community"
+  description:
+    zh: "连接全球云计算开发者，分享技术经验，推动创新发展"
+    en: "Connecting global cloud computing developers, sharing technical experiences, and driving innovation"
+  url: "https://cnusergroup.github.io/cnusergroup-website"
+  author: "User Group Community"
+
+globalStats:
+  organizations: 470
+  countries: 98
+  members: 500000
+
+socialLinks:
+  - name: "wechat"
+    platform: "wechat"
+    url: "#"
+    icon: "https://dev-media.amazoncloud.cn/client-250819071524/img/link_icon1.56c6073.png"
+  - name: "weibo"
+    platform: "weibo"
+    url: "https://weibo.com/awscloud"
+    icon: "https://dev-media.amazoncloud.cn/client-250819071524/img/link_icon2.e7cd24c.png"
+  - name: "tiktok"
+    platform: "tiktok"
+    url: "#"
+    icon: "https://dev-media.amazoncloud.cn/client-250819071524/img/link_icon3.e8ca0c9.png"
+  - name: "bilibili"
+    platform: "bilibili"
+    url: "https://space.bilibili.com/awscloud"
+    icon: "https://dev-media.amazoncloud.cn/client-250819071524/img/link_icon4.bf9ecf5.png"
+  - name: "xiaohongshu"
+    platform: "xiaohongshu"
+    url: "#"
+    icon: "https://dev-media.amazoncloud.cn/client-250819071524/img/link_icon5.a45886a.png"
+
+officialAccount:
+  qrCode: "https://dev-media.amazoncloud.cn/client-250819071524/img/official-img.e17cd6d.jpg"
+  description:
+    zh: "扫码关注亚马逊云科技 User Group 公众号"
+    en: "Scan to follow User Group official account"
+
+applications:
+  - type: "leader"
+    title:
+      zh: "申请成为 User Group Leader"
+      en: "Apply to Become User Group Leader"
+    icon: "https://dev-media.amazoncloud.cn/client-250819071524/img/user.587e69d.png"
+    url: "#"
+  - type: "volunteer"
+    title:
+      zh: "申请志愿者"
+      en: "Apply as Volunteer"
+    icon: "https://dev-media.amazoncloud.cn/client-250819071524/img/volunteer_p.7e56947.png"
+    url: "#"
+  - type: "instructor"
+    title:
+      zh: "申请讲师"
+      en: "Apply as Instructor"
+    icon: "https://dev-media.amazoncloud.cn/client-250819071524/img/teacher_p.b3b4aca.png"
+    url: "#"
+
+externalLinks:
+  - name: "freeCloud"
+    title:
+      zh: "免费上云"
+      en: "Free Cloud Access"
+    icon: "https://dev-media.amazoncloud.cn/client-250819071524/img/free_cloud_access.9dda31e.png"
+    url: "https://aws.amazon.com/cn/free/"
+  - name: "pytorch"
+    title:
+      zh: "PyTorch User Case 收集表"
+      en: "PyTorch User Case Collection"
+    icon: "https://dev-media.amazoncloud.cn/client-250819071524/img/pyTorch_user_case.dcdcb8a.png"
+    url: "#"
+
+images:
+  hero:
+    background: "https://dev-media.amazoncloud.cn/client-250819071524/img/instructin-img_pc.8c29508.png"
+    headerDecoration: "https://dev-media.amazoncloud.cn/client-250819071524/img/instructin_header.8f7d4d7.png"
+    headerDecorationMobile: "https://dev-media.amazoncloud.cn/client-250819071524/img/instructin_header_m.f34770c.png"
+    footerDecoration: "https://dev-media.amazoncloud.cn/client-250819071524/img/instructin_footer.6eafe1d.png"
+    footerDecorationMobile: "https://dev-media.amazoncloud.cn/client-250819071524/img/instructin_footer_m.1220736.png"
+  titles:
+    left: "https://dev-media.amazoncloud.cn/client-250819071524/img/title_left.36eb2ee.png"
+    right: "https://dev-media.amazoncloud.cn/client-250819071524/img/title_right.871f0ac.png"
+  community:
+    cardBackground: "https://dev-media.amazoncloud.cn/client-250819071524/img/comm_request.d1f0226.png"
+
+defaultLanguage: "zh"
+supportedLanguages: ["zh", "en"]

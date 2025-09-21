@@ -1,0 +1,374 @@
+---
+import { getLanguageFromUrl, t } from '../../utils';
+import Button from '../ui/Button.astro';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  backgroundImage?: string;
+}
+
+const lang = getLanguageFromUrl(Astro.url);
+const {
+  title = t('hero.title', lang),
+  subtitle = t('hero.subtitle', lang),
+  ctaText = t('hero.cta', lang),
+  ctaLink = '#global-community',
+  backgroundImage = `${import.meta.env.BASE_URL}images/ui/banner-bg.jpg`
+} = Astro.props;
+---
+
+<section class="relative bg-gradient-to-br from-aws-blue to-blue-800 text-white overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img 
+      src={backgroundImage} 
+      alt="" 
+      class="w-full h-full object-cover opacity-40"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-br from-aws-blue/60 to-blue-800/70"></div>
+  </div>
+  
+  <!-- Decorative Elements -->
+  <div class="absolute top-0 left-0 w-full h-full">
+    <div class="absolute top-10 left-10 w-20 h-20 bg-aws-orange opacity-20 rounded-full blur-xl"></div>
+    <div class="absolute bottom-20 right-20 w-32 h-32 bg-blue-400 opacity-20 rounded-full blur-xl"></div>
+  </div>
+  
+  <div class="container-custom relative z-10">
+    <div class="py-20 lg:py-32">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Header Decoration -->
+        <div class="mb-8 flex justify-center">
+          <div class="artistic-header-decoration">
+            <div class="decoration-line left"></div>
+            <div class="decoration-center">
+              <div class="center-dot"></div>
+              <div class="center-ring"></div>
+            </div>
+            <div class="decoration-line right"></div>
+          </div>
+        </div>
+        
+        <!-- Main Title -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <span class="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+            {title}
+          </span>
+        </h1>
+        
+        <!-- Subtitle -->
+        <p class="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed">
+          {subtitle}
+        </p>
+        
+        <!-- CTA Button -->
+        <div class="mb-12">
+          <Button 
+            href={ctaLink}
+            variant="primary"
+            size="lg"
+            class="bg-aws-orange hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+          >
+            {ctaText}
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </Button>
+        </div>
+        
+        <!-- Footer Decoration -->
+        <div class="flex justify-center">
+          <div class="artistic-footer-decoration">
+            <div class="footer-elements">
+              <div class="footer-diamond"></div>
+              <div class="footer-line"></div>
+              <div class="footer-circle"></div>
+              <div class="footer-line"></div>
+              <div class="footer-diamond"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
+</section>
+
+<style>
+  /* Header Decoration Styles */
+  .artistic-header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 60px;
+    position: relative;
+  }
+
+  .decoration-line {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff9500, transparent);
+    position: relative;
+  }
+
+  .decoration-line.left {
+    background: linear-gradient(90deg, transparent, #ff9500);
+    animation: expandLeft 2s ease-in-out infinite alternate;
+  }
+
+  .decoration-line.right {
+    background: linear-gradient(90deg, #ff9500, transparent);
+    animation: expandRight 2s ease-in-out infinite alternate;
+  }
+
+  .decoration-center {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 0 20px;
+  }
+
+  .center-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #ff9500;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 149, 0, 0.6);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .center-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 149, 0, 0.3);
+    border-radius: 50%;
+    animation: rotate 4s linear infinite;
+  }
+
+  .center-ring::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #ff9500;
+    border-radius: 50%;
+  }
+
+  /* Footer Decoration Styles */
+  .artistic-footer-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+  }
+
+  .footer-elements {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .footer-diamond {
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(45deg, #ff9500, #e67e22);
+    transform: rotate(45deg);
+    animation: sparkle 3s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(255, 149, 0, 0.4);
+  }
+
+  .footer-line {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 149, 0, 0.6), transparent);
+    animation: flow 2s ease-in-out infinite alternate;
+  }
+
+  .footer-circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 149, 0, 0.8);
+    border-radius: 50%;
+    position: relative;
+    animation: breathe 3s ease-in-out infinite;
+  }
+
+  .footer-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: #ff9500;
+    border-radius: 50%;
+    animation: innerPulse 2s ease-in-out infinite;
+  }
+
+  /* Animations */
+  @keyframes expandLeft {
+    0% { width: 60px; opacity: 0.6; }
+    100% { width: 80px; opacity: 1; }
+  }
+
+  @keyframes expandRight {
+    0% { width: 60px; opacity: 0.6; }
+    100% { width: 80px; opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { 
+      transform: translate(-50%, -50%) scale(1);
+      box-shadow: 0 0 20px rgba(255, 149, 0, 0.6);
+    }
+    50% { 
+      transform: translate(-50%, -50%) scale(1.2);
+      box-shadow: 0 0 30px rgba(255, 149, 0, 0.8);
+    }
+  }
+
+  @keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  @keyframes sparkle {
+    0%, 100% { 
+      transform: rotate(45deg) scale(1);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: rotate(45deg) scale(1.3);
+      opacity: 1;
+    }
+  }
+
+  @keyframes flow {
+    0% { 
+      background: linear-gradient(90deg, transparent, rgba(255, 149, 0, 0.3), transparent);
+    }
+    100% { 
+      background: linear-gradient(90deg, transparent, rgba(255, 149, 0, 0.8), transparent);
+    }
+  }
+
+  @keyframes breathe {
+    0%, 100% { 
+      transform: scale(1);
+      border-color: rgba(255, 149, 0, 0.6);
+    }
+    50% { 
+      transform: scale(1.1);
+      border-color: rgba(255, 149, 0, 1);
+    }
+  }
+
+  @keyframes innerPulse {
+    0%, 100% { 
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: translate(-50%, -50%) scale(1.5);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .hero-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .artistic-header-decoration {
+      width: 250px;
+      height: 50px;
+    }
+
+    .decoration-line {
+      width: 60px;
+    }
+
+    .decoration-center {
+      width: 30px;
+      height: 30px;
+      margin: 0 15px;
+    }
+
+    .center-ring {
+      width: 24px;
+      height: 24px;
+    }
+
+    .footer-elements {
+      gap: 10px;
+    }
+
+    .footer-line {
+      width: 30px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .artistic-header-decoration {
+      width: 200px;
+      height: 40px;
+    }
+
+    .decoration-line {
+      width: 50px;
+    }
+
+    .decoration-center {
+      width: 25px;
+      height: 25px;
+      margin: 0 10px;
+    }
+
+    .footer-elements {
+      gap: 8px;
+    }
+
+    .footer-line {
+      width: 25px;
+    }
+
+    .footer-diamond {
+      width: 10px;
+      height: 10px;
+    }
+
+    .footer-circle {
+      width: 14px;
+      height: 14px;
+    }
+  }
+</style>

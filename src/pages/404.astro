@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import { getLanguageFromUrl } from '../utils';
+
+const lang = getLanguageFromUrl(Astro.url);
+---
+
+<BaseLayout title={lang === 'zh' ? '页面未找到' : 'Page Not Found'} noIndex>
+  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 text-center">
+      <!-- 404 Illustration -->
+      <div class="mx-auto">
+        <div class="text-9xl font-bold text-aws-orange opacity-20">404</div>
+        <div class="relative -mt-16">
+          <svg class="mx-auto h-32 w-32 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.562M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Error Message -->
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">
+          {lang === 'zh' ? '页面未找到' : 'Page Not Found'}
+        </h1>
+        <p class="text-lg text-gray-600 mb-8">
+          {lang === 'zh' 
+            ? '抱歉，您访问的页面不存在或已被移动。'
+            : 'Sorry, the page you are looking for does not exist or has been moved.'
+          }
+        </p>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="space-y-4">
+        <Button 
+          href={lang === 'zh' ? '/' : '/en'}
+          variant="primary"
+          size="lg"
+          class="w-full justify-center"
+        >
+          {lang === 'zh' ? '返回首页' : 'Go Home'}
+        </Button>
+        
+        <Button 
+          href={lang === 'zh' ? '/cities' : '/en/cities'}
+          variant="outline"
+          size="lg"
+          class="w-full justify-center"
+        >
+          {lang === 'zh' ? '浏览城市' : 'Browse Cities'}
+        </Button>
+      </div>
+      
+      <!-- Help Text -->
+      <div class="text-sm text-gray-500">
+        <p>
+          {lang === 'zh' 
+            ? '如果您认为这是一个错误，请'
+            : 'If you think this is an error, please'
+          }
+          <a href="#" class="text-aws-orange hover:text-orange-600 transition-colors duration-200">
+            {lang === 'zh' ? '联系我们' : 'contact us'}
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

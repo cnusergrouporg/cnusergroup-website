@@ -1,0 +1,104 @@
+{
+  "site": {
+    "title": "User Group Community",
+    "description": "Connecting global cloud computing developers, sharing technical experiences, and driving innovation"
+  },
+  "navigation": {
+    "home": "Home",
+    "cities": "City Communities",
+    "events": "Events",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "User Group Community",
+    "subtitle": "Connecting global cloud computing developers, sharing technical experiences, and driving innovation",
+    "cta": "Join Us"
+  },
+  "global": {
+    "title": "User Group Global Community",
+    "description": "To date, the User Group community has established over 470 organizations globally, covering 98 countries with a total of over 500,000 members. The User Group community consists of developers with high enthusiasm for technology.",
+    "stats": {
+      "organizations": "470+",
+      "countries": "98",
+      "members": "500K+"
+    },
+    "cta": "Learn About Global User Group Community"
+  },
+  "cities": {
+    "title": "City Communities",
+    "subtitle": "Explore User Group communities across the country and connect with local developers",
+    "viewDetails": "View Details",
+    "viewAll": "View All Cities",
+    "search": "Search city names...",
+    "filter": {
+      "all": "All Cities",
+      "active": "Active Communities",
+      "north": "North China",
+      "east": "East China",
+      "south": "South China", 
+      "west": "West China"
+    }
+  },
+  "events": {
+    "title": "Events",
+    "subtitle": "Participate in our technical events and community gatherings"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Learn about the User Group Community"
+  },
+  "community": {
+    "title": "Community Building",
+    "applications": {
+      "leader": {
+        "title": "Apply to Become User Group Leader",
+        "cta": "Apply Now"
+      },
+      "volunteer": {
+        "title": "Apply as Volunteer",
+        "cta": "Apply Now"
+      },
+      "instructor": {
+        "title": "Apply as Instructor",
+        "cta": "Apply Now"
+      }
+    }
+  },
+  "social": {
+    "title": "Follow Us",
+    "wechat": "WeChat",
+    "weibo": "Weibo",
+    "tiktok": "TikTok",
+    "bilibili": "Bilibili",
+    "xiaohongshu": "Xiaohongshu",
+    "officialAccount": "Scan to follow User Group official account"
+  },
+  "links": {
+    "freeCloud": "Free Cloud Access",
+    "pytorch": "PyTorch User Case Collection"
+  },
+  "footer": {
+    "copyright": "© 2025 User Group Community. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "cityDetail": {
+    "contact": "Contact Information",
+    "events": "Recent Events",
+    "description": "Community Introduction",
+    "leader": "Community Leader",
+    "wechat": "WeChat Group",
+    "email": "Email",
+    "noEvents": "No events available",
+    "comingSoon": "Coming Soon"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "back": "Back",
+    "home": "Home",
+    "more": "More"
+  }
+}

@@ -1,0 +1,51 @@
+---
+// 图片预加载组件，用于预加载关键图片资源
+interface Props {
+  images: Array<{
+    src: string;
+    type?: string;
+    media?: string;
+  }>;
+}
+
+const { images } = Astro.props;
+---
+
+<!-- 预加载关键图片 -->
+{images.map((image) => (
+  <link
+    rel="preload"
+    as="image"
+    href={image.src}
+    type={image.type}
+    media={image.media}
+  />
+))}
+
+<script>
+  // 客户端图片预加载
+  const criticalImages = [
+    '/images/ui/hero-background.png',
+    '/images/ui/title-left.png',
+    '/images/ui/title-right.png',
+    '/images/qr/wechat-official.jpg'
+  ];
+  
+  // 预加载关键图片
+  function preloadCriticalImages() {
+    criticalImages.forEach(src => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+    });
+  }
+  
+  // 页面加载完成后预加载
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', preloadCriticalImages);
+  } else {
+    preloadCriticalImages();
+  }
+</script>

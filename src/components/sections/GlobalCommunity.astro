@@ -1,0 +1,166 @@
+---
+import { getLanguageFromUrl, t, getSiteConfig, formatNumber } from '../../utils';
+import Button from '../ui/Button.astro';
+import Card from '../ui/Card.astro';
+
+const lang = getLanguageFromUrl(Astro.url);
+const config = getSiteConfig();
+
+const stats = [
+  {
+    number: config.globalStats.organizations,
+    label: t('global.stats.organizations', lang),
+    suffix: '+',
+    icon: '🏢'
+  },
+  {
+    number: config.globalStats.countries,
+    label: t('global.stats.countries', lang),
+    suffix: '',
+    icon: '🌍'
+  },
+  {
+    number: config.globalStats.members,
+    label: t('global.stats.members', lang),
+    suffix: '+',
+    icon: '👥'
+  }
+];
+---
+
+<section id="global-community" class="py-16 lg:py-24 bg-gray-50">
+  <div class="container-custom">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <div class="flex items-center justify-center mb-6">
+        <img 
+          src="https://dev-media.amazoncloud.cn/client-250819071524/img/title_left.36eb2ee.png" 
+          alt="" 
+          class="h-8"
+        />
+        <h2 class="text-3xl lg:text-4xl font-bold text-aws-blue mx-6">
+          {t('global.title', lang)}
+        </h2>
+        <img 
+          src="https://dev-media.amazoncloud.cn/client-250819071524/img/title_right.871f0ac.png" 
+          alt="" 
+          class="h-8"
+        />
+      </div>
+    </div>
+    
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Content Side -->
+      <div class="lg:order-1">
+        <div class="prose prose-lg max-w-none">
+          <p class="text-gray-700 leading-relaxed mb-8 text-lg">
+            {t('global.description', lang)}
+          </p>
+        </div>
+        
+        <!-- Statistics -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+          {stats.map((stat, index) => (
+            <Card class="text-center p-6 hover:shadow-lg transition-shadow duration-300" hover>
+              <div class="text-3xl mb-2">{stat.icon}</div>
+              <div class="text-3xl lg:text-4xl font-bold text-aws-orange mb-2 counter" data-target={stat.number}>
+                0{stat.suffix}
+              </div>
+              <div class="text-sm text-gray-600 font-medium">
+                {stat.label}
+              </div>
+            </Card>
+          ))}
+        </div>
+        
+        <!-- CTA Button -->
+        <div class="text-center lg:text-left">
+          <Button 
+            href={lang === 'zh' ? '/about' : '/en/about'}
+            variant="outline"
+            size="lg"
+            class="inline-flex items-center"
+          >
+            {t('global.cta', lang)}
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+          </Button>
+        </div>
+      </div>
+      
+      <!-- Image Side -->
+      <div class="lg:order-2">
+        <div class="relative">
+          <img 
+            src="https://dev-media.amazoncloud.cn/client-250819071524/img/instructin-img_pc.8c29508.png"
+            alt={t('global.title', lang)}
+            class="w-full h-auto rounded-lg shadow-lg"
+            loading="lazy"
+          />
+          
+          <!-- Floating Elements -->
+          <div class="absolute -top-4 -right-4 w-16 h-16 bg-aws-orange rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg animate-pulse">
+            AWS
+          </div>
+          
+          <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white shadow-lg hero-float">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // 数字动画计数器
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target as HTMLElement;
+          const target = parseInt(counter.dataset.target || '0');
+          const suffix = counter.textContent?.match(/[+万KM]/) || [''];
+          
+          let current = 0;
+          const increment = target / 100;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            counter.textContent = Math.floor(current) + suffix[0];
+          }, 20);
+          
+          observer.unobserve(counter);
+        }
+      });
+    });
+    
+    counters.forEach(counter => observer.observe(counter));
+  }
+  
+  // 页面加载完成后启动动画
+  document.addEventListener('DOMContentLoaded', animateCounters);
+</script>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .hero-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .counter {
+    transition: all 0.3s ease;
+  }
+</style>

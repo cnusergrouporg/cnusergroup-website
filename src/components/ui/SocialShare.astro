@@ -1,0 +1,229 @@
+---
+import { getLanguageFromUrl, t } from '../../utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+  platforms?: string[];
+  size?: 'sm' | 'md' | 'lg';
+  layout?: 'horizontal' | 'vertical';
+  class?: string;
+}
+
+const lang = getLanguageFromUrl(Astro.url);
+
+const {
+  title = t('site.title', lang),
+  description = t('site.description', lang),
+  url = Astro.url.href,
+  image = '/images/og-image.jpg',
+  platforms = ['wechat', 'weibo', 'qq', 'copy'],
+  size = 'md',
+  layout = 'horizontal',
+  class: className = ''
+} = Astro.props;
+
+type ShareConfigItem = {
+  name: string;
+  icon: string;
+  color: string;
+  action?: string;
+  url?: string;
+};
+
+const shareConfig: Record<string, ShareConfigItem> = {
+  wechat: {
+    name: '微信',
+    icon: '💬',
+    color: '#07C160',
+    action: 'showWeChatShare'
+  },
+  weibo: {
+    name: '微博',
+    icon: '🔗',
+    color: '#E6162D',
+    url: `https://service.weibo.com/share/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&pic=${encodeURIComponent(image)}`
+  },
+  qq: {
+    name: 'QQ空间',
+    icon: '🌐',
+    color: '#12B7F5',
+    url: `https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}&pics=${encodeURIComponent(image)}`
+  },
+  copy: {
+    name: lang === 'zh' ? '复制链接' : 'Copy Link',
+    icon: '📋',
+    color: '#6B7280',
+    action: 'copyLink'
+  }
+};
+
+const sizeClasses = {
+  sm: 'w-8 h-8 text-sm',
+  md: 'w-10 h-10 text-base',
+  lg: 'w-12 h-12 text-lg'
+};
+
+const layoutClasses = {
+  horizontal: 'flex items-center gap-2',
+  vertical: 'flex flex-col gap-2'
+};
+---
+
+<div class={`social-share ${layoutClasses[layout]} ${className}`}>
+  <span class="text-sm font-medium text-gray-600 flex-shrink-0">
+    {lang === 'zh' ? '分享到:' : 'Share:'}
+  </span>
+  
+  <div class={`flex gap-2 ${layout === 'vertical' ? 'flex-col' : ''}`}>
+    {platforms.map((platform) => {
+      const config = shareConfig[platform as keyof typeof shareConfig];
+      if (!config) return null;
+      
+      return (
+        <button
+          class={`share-button share-${platform} ${sizeClasses[size]} flex items-center justify-center rounded-lg border border-gray-200 bg-white hover:shadow-md transition-all duration-200 group`}
+          onclick={config.action ? `${config.action}('${url}', '${title}', '${description}')` : config.url ? `window.open('${config.url}', '_blank', 'width=600,height=400')` : ''}
+          title={`${lang === 'zh' ? '分享到' : 'Share to'} ${config.name}`}
+          style={`--hover-color: ${config.color}`}
+        >
+          <span class="text-lg group-hover:scale-110 transition-transform duration-200">
+            {config.icon}
+          </span>
+        </button>
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .share-button:hover {
+    border-color: var(--hover-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .share-wechat:hover {
+    background-color: rgba(7, 193, 96, 0.05);
+  }
+  
+  .share-weibo:hover {
+    background-color: rgba(230, 22, 45, 0.05);
+  }
+  
+  .share-qq:hover {
+    background-color: rgba(18, 183, 245, 0.05);
+  }
+  
+  .share-copy:hover {
+    background-color: rgba(107, 114, 128, 0.05);
+  }
+</style>
+
+<script>
+  // 显示微信分享
+  function showWeChatShare(url: any, title: any, description: any) {
+    // 创建微信分享弹窗
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50';
+    modal.innerHTML = `
+      <div class="bg-white rounded-lg p-6 max-w-sm mx-4">
+        <div class="text-center">
+          <div class="text-4xl mb-4">📱</div>
+          <h3 class="text-lg font-semibold mb-2">微信分享</h3>
+          <p class="text-gray-600 text-sm mb-4">请使用微信扫一扫功能分享此页面</p>
+          <div class="flex space-x-3">
+            <button onclick="copyLink('${url}')" class="flex-1 bg-green-500 text-white px-4 py-2 rounded-lg text-sm">
+              复制链接
+            </button>
+            <button onclick="this.closest('.fixed').remove()" class="flex-1 bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm">
+              关闭
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // 点击背景关闭
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove();
+      }
+    });
+  }
+  
+  // 复制链接
+  function copyLink(url: any) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => {
+        showShareToast('链接已复制到剪贴板');
+      }).catch(() => {
+        fallbackCopyLink(url);
+      });
+    } else {
+      fallbackCopyLink(url);
+    }
+  }
+  
+  // 备用复制方法
+  function fallbackCopyLink(url: any) {
+    const textArea = document.createElement('textarea');
+    textArea.value = url;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      showShareToast('链接已复制到剪贴板');
+    } catch (err) {
+      showShareToast('复制失败，请手动复制');
+    }
+    
+    document.body.removeChild(textArea);
+  }
+  
+  // 显示分享提示
+  function showShareToast(message: any) {
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg text-sm z-50 transform translate-x-full transition-transform duration-300';
+    toast.textContent = message;
+    
+    document.body.appendChild(toast);
+    
+    // 显示动画
+    setTimeout(() => {
+      toast.classList.remove('translate-x-full');
+    }, 100);
+    
+    // 3秒后隐藏
+    setTimeout(() => {
+      toast.classList.add('translate-x-full');
+      setTimeout(() => {
+        if (document.body.contains(toast)) {
+          document.body.removeChild(toast);
+        }
+      }, 300);
+    }, 3000);
+  }
+  
+  // 分享追踪
+  function trackShare(platform: any, url: any) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'share', {
+        method: platform,
+        content_type: 'page',
+        item_id: url
+      });
+    }
+  }
+  
+  // 全局函数
+  window.showWeChatShare = showWeChatShare;
+  window.copyLink = copyLink;
+</script>
