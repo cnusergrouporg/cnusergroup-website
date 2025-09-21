@@ -1,5 +1,5 @@
 ---
-import { getLanguageFromUrl, t, getSiteConfig, formatNumber } from '../../utils';
+import { getLanguageFromUrl, t, getSiteConfig, formatNumber, getRoute, getUIImage } from '../../utils';
 import Button from '../ui/Button.astro';
 import Card from '../ui/Card.astro';
 
@@ -34,7 +34,7 @@ const stats = [
     <div class="text-center mb-16">
       <div class="flex items-center justify-center mb-6">
         <img 
-          src={`${import.meta.env.BASE_URL}images/ui/title-left.png`}
+          src={getUIImage('titleLeft')}
           alt="" 
           class="h-8"
         />
@@ -42,7 +42,7 @@ const stats = [
           {t('global.title', lang)}
         </h2>
         <img 
-          src={`${import.meta.env.BASE_URL}images/ui/title-right.png`}
+          src={getUIImage('title-right')}
           alt="" 
           class="h-8"
         />
@@ -76,7 +76,7 @@ const stats = [
         <!-- CTA Button -->
         <div class="text-center lg:text-left">
           <Button 
-            href={lang === 'zh' ? '/about' : '/en/about'}
+            href={getRoute('about', lang)}
             variant="outline"
             size="lg"
             class="inline-flex items-center"
@@ -93,7 +93,7 @@ const stats = [
       <div class="lg:order-2">
         <div class="relative">
           <img 
-            src={`${import.meta.env.BASE_URL}images/hero-bg.png`}
+            src={getUIImage('heroBackground')}
             alt={t('global.title', lang)}
             class="w-full h-auto rounded-lg shadow-lg"
             loading="lazy"

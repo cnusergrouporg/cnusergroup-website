@@ -1,9 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getLanguageFromUrl, t } from '../../utils';
-import communityImages from '../../data/community-images.json';
 
 const lang = getLanguageFromUrl(Astro.url);
+
+// 使用基础路径处理图片路径
+function processImagePath(path: string): string {
+  const basePath = import.meta.env.BASE_URL || '/';
+  if (basePath === '/') {
+    return path;
+  }
+  const cleanBasePath = basePath.replace(/\/$/, '');
+  const normalizedPath = path.startsWith('/') ? path : '/' + path;
+  return cleanBasePath + normalizedPath;
+}
 ---
 
 <BaseLayout title={t('about.title', lang)}>
@@ -25,7 +35,7 @@ const lang = getLanguageFromUrl(Astro.url);
           </div>
         </div>
         <div class="banner-right">
-          <img src={communityImages["User Group"]} alt="User Group" class="banner-image" />
+          <img src={processImagePath('/images/community/ug-bg.png')} alt="User Group" class="banner-image" />
         </div>
       </div>
     </section>
@@ -38,7 +48,7 @@ const lang = getLanguageFromUrl(Astro.url);
     <section class="leaders-section" id="leaders">
       <div class="container">
         <div class="section-title-image">
-          <img src={communityImages["优秀领导者"]} alt="Outstanding Leaders" />
+          <img src={processImagePath('/images/community/leader-title.png')} alt="Outstanding Leaders" />
         </div>
         
         <div class="leaders-content">
@@ -104,7 +114,7 @@ const lang = getLanguageFromUrl(Astro.url);
           </div>
           
           <div class="builder-image">
-            <img src={communityImages["Community Builder"]} alt="Community Builder" />
+            <img src={processImagePath('/images/community/builder.png')} alt="Community Builder" />
           </div>
         </div>
       </div>
@@ -141,7 +151,7 @@ const lang = getLanguageFromUrl(Astro.url);
         </div>
         
         <div class="heroes-image">
-          <img src={communityImages["Heroes"]} alt="Heroes" />
+          <img src={processImagePath('/images/community/all-persons.png')} alt="Heroes" />
         </div>
       </div>
     </section>
@@ -168,12 +178,12 @@ const lang = getLanguageFromUrl(Astro.url);
           <!-- Blogger Benefits Section - Based on Original Layout -->
           <div class="blogger-benefits-section">
             <div class="blogger-benefits-left">
-              <img src={communityImages["技领云博主"]} alt="Blogger Program" class="blogger-invite-img" />
+              <img src={processImagePath('/images/community/blogger-pc1.png')} alt="Blogger Program" class="blogger-invite-img" />
             </div>
             
             <div class="blogger-benefits-right">
               <div class="benefits-header">
-                <img src={communityImages["博主权益"]} alt="Benefits Icon" class="rights-img" />
+                <img src={processImagePath('/images/community/blogger-rights.png')} alt="Benefits Icon" class="rights-img" />
                 <h3 class="rights-title">Blogger Benefits</h3>
               </div>
               
@@ -220,7 +230,7 @@ const lang = getLanguageFromUrl(Astro.url);
 
             </div>
             <div class="apply-image">
-              <img src={communityImages["技领云博主团队"]} alt="Cloud Blogger Team" />
+              <img src={processImagePath('/images/community/blogger-pc2.jpg')} alt="Cloud Blogger Team" />
             </div>
           </div>
         </div>

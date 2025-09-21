@@ -5,7 +5,7 @@ import GlobalCommunity from '../components/sections/GlobalCommunity.astro';
 import CommunityBuilding from '../components/sections/CommunityBuilding.astro';
 import CityCard from '../components/ui/CityCard.astro';
 import Button from '../components/ui/Button.astro';
-import { getLanguageFromUrl, t, getActiveCities } from '../utils';
+import { getLanguageFromUrl, t, getActiveCities, getRoute } from '../utils';
 import { getUIImage } from '../utils/images';
 
 const lang = getLanguageFromUrl(Astro.url);
@@ -80,7 +80,7 @@ const featuredCities = allCities.slice(0, 6);
       <!-- View All Cities Button -->
       <div class="text-center">
         <Button 
-          href={lang === 'zh' ? '/cities' : '/en/cities'}
+          href={getRoute('cities', lang)}
           variant="outline"
           size="lg"
           class="inline-flex items-center px-8 py-4 text-lg font-semibold"

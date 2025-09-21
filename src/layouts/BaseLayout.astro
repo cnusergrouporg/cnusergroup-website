@@ -1,5 +1,6 @@
 ---
 import { getLanguageFromUrl, getPageTitle, t } from '../utils';
+import { getUIImage } from '../utils/images';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import ImagePreloader from '../components/ui/ImagePreloader.astro';
@@ -22,7 +23,7 @@ const lang = getLanguageFromUrl(Astro.url);
 const pageTitle = getPageTitle(title || '', lang);
 const pageDescription = description || t('site.description', lang);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const socialImage = image || '/images/og-image.jpg';
+const socialImage = image || `${import.meta.env.BASE_URL}images/og-image.jpg`;
 ---
 
 <!DOCTYPE html>
@@ -31,6 +32,7 @@ const socialImage = image || '/images/og-image.jpg';
     <meta charset="UTF-8" />
     <meta name="description" content={pageDescription} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href={import.meta.env.BASE_URL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     
@@ -79,9 +81,10 @@ const socialImage = image || '/images/og-image.jpg';
     
     <!-- 预加载关键图片 -->
     <ImagePreloader images={[
-      { src: `${import.meta.env.BASE_URL}images/ui/banner-bg.jpg`, type: 'image/jpeg' },
-      { src: `${import.meta.env.BASE_URL}images/ui/title-left.png`, type: 'image/png' },
-      { src: `${import.meta.env.BASE_URL}images/ui/title-right.png`, type: 'image/png' }
+      { src: getUIImage('banner-bg'), type: 'image/jpeg' },
+      { src: getUIImage('hero-bg'), type: 'image/png' },
+      { src: getUIImage('title-left'), type: 'image/png' },
+      { src: getUIImage('title-right'), type: 'image/png' }
     ]} />
   </head>
   

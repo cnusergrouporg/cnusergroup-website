@@ -1,5 +1,5 @@
 ---
-import { getLanguageFromUrl, t } from '../../utils';
+import { getLanguageFromUrl, t, getUIImage } from '../../utils';
 
 interface Props {
   title?: string;
@@ -18,7 +18,7 @@ const {
   title = t('site.title', lang),
   description = t('site.description', lang),
   url = Astro.url.href,
-  image = '/images/og-image.jpg',
+  image = getUIImage('og-image'),
   platforms = ['wechat', 'weibo', 'qq', 'copy'],
   size = 'md',
   layout = 'horizontal',

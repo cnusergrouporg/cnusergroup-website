@@ -2,7 +2,13 @@ import type { Language } from '@/types';
 
 // 获取基础路径
 function getBasePath(): string {
-  return import.meta.env.BASE_URL || '/';
+  // 在浏览器环境中，从 import.meta.env 获取
+  if (typeof window !== 'undefined') {
+    return import.meta.env.BASE_URL || '/';
+  }
+  // 在服务器端，检查环境变量
+  const isProduction = process.env.NODE_ENV === 'production' || process.env.CI;
+  return isProduction ? '/cnusergroup-website' : '/';
 }
 
 // 处理路径，确保包含正确的 base path
@@ -14,7 +20,9 @@ function processRoutePath(path: string): string {
   }
   // 移除 basePath 末尾的斜杠，并确保路径正确拼接
   const cleanBasePath = basePath.replace(/\/$/, '');
-  return cleanBasePath + path;
+  // 确保路径以 / 开头
+  const normalizedPath = path.startsWith('/') ? path : '/' + path;
+  return cleanBasePath + normalizedPath;
 }
 
 // 路由配置
@@ -94,8 +102,17 @@ export function generateBreadcrumbs(currentPath: string, lang: Language): Array<
     { label: lang === 'zh' ? '首页' : 'Home', path: getRoute('home', lang) }
   ];
   
+  // 移除基础路径、语言前缀和开头的斜杠
+  const basePath = getBasePath();
+  let cleanPath = currentPath;
+  
+  // 移除基础路径
+  if (basePath !== '/' && cleanPath.startsWith(basePath)) {
+    cleanPath = cleanPath.substring(basePath.length);
+  }
+  
   // 移除语言前缀和开头的斜杠
-  const cleanPath = currentPath.replace(/^\/(en|zh)\//, '').replace(/^\//, '');
+  cleanPath = cleanPath.replace(/^\/(en|zh)\//, '').replace(/^\//, '');
   
   if (!cleanPath) {
     return breadcrumbs;

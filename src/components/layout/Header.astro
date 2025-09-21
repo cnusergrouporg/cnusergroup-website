@@ -1,5 +1,5 @@
 ---
-import { getLanguageFromUrl, getLanguageSwitchUrl, t } from '@/utils';
+import { getLanguageFromUrl, getLanguageSwitchUrl, t, getRoute } from '@/utils';
 import LanguageToggle from './LanguageToggle.astro';
 
 const currentUrl = Astro.url.pathname;
@@ -12,7 +12,7 @@ const lang = getLanguageFromUrl(Astro.url);
       <!-- Logo and Brand -->
       <div class="flex items-center space-x-4">
         <a 
-          href={lang === 'zh' ? '/' : '/en'} 
+          href={getRoute('home', lang)} 
           class="flex items-center space-x-3 group"
           aria-label={lang === 'zh' ? '返回首页' : 'Go to homepage'}
         >
@@ -36,7 +36,7 @@ const lang = getLanguageFromUrl(Astro.url);
         aria-label={lang === 'zh' ? '主导航' : 'Main navigation'}
       >
         <a 
-          href={lang === 'zh' ? '/' : '/en'} 
+          href={getRoute('home', lang)} 
           class="nav-link"
           data-text={t('navigation.home', lang)}
         >
@@ -44,7 +44,7 @@ const lang = getLanguageFromUrl(Astro.url);
           <div class="nav-link-bg"></div>
         </a>
         <a 
-          href={lang === 'zh' ? '/cities' : '/en/cities'} 
+          href={getRoute('cities', lang)} 
           class="nav-link"
           data-text={t('navigation.cities', lang)}
         >
@@ -52,7 +52,7 @@ const lang = getLanguageFromUrl(Astro.url);
           <div class="nav-link-bg"></div>
         </a>
         <a 
-          href={lang === 'zh' ? '/events' : '/en/events'} 
+          href={getRoute('events', lang)} 
           class="nav-link"
           data-text={t('navigation.events', lang)}
         >
@@ -60,7 +60,7 @@ const lang = getLanguageFromUrl(Astro.url);
           <div class="nav-link-bg"></div>
         </a>
         <a 
-          href={lang === 'zh' ? '/about' : '/en/about'} 
+          href={getRoute('about', lang)} 
           class="nav-link"
           data-text={t('navigation.about', lang)}
         >
@@ -90,7 +90,7 @@ const lang = getLanguageFromUrl(Astro.url);
     <div id="mobile-menu" class="md:hidden hidden border-t border-gray-100 py-4">
       <nav class="flex flex-col space-y-2 px-4">
         <a 
-          href={lang === 'zh' ? '/' : '/en'} 
+          href={getRoute('home', lang)} 
           class="nav-link mobile-nav-link"
           data-text={t('navigation.home', lang)}
         >
@@ -98,7 +98,7 @@ const lang = getLanguageFromUrl(Astro.url);
           <div class="nav-link-bg"></div>
         </a>
         <a 
-          href={lang === 'zh' ? '/cities' : '/en/cities'} 
+          href={getRoute('cities', lang)} 
           class="nav-link mobile-nav-link"
           data-text={t('navigation.cities', lang)}
         >
@@ -106,7 +106,7 @@ const lang = getLanguageFromUrl(Astro.url);
           <div class="nav-link-bg"></div>
         </a>
         <a 
-          href={lang === 'zh' ? '/events' : '/en/events'} 
+          href={getRoute('events', lang)} 
           class="nav-link mobile-nav-link"
           data-text={t('navigation.events', lang)}
         >
@@ -114,7 +114,7 @@ const lang = getLanguageFromUrl(Astro.url);
           <div class="nav-link-bg"></div>
         </a>
         <a 
-          href={lang === 'zh' ? '/about' : '/en/about'} 
+          href={getRoute('about', lang)} 
           class="nav-link mobile-nav-link"
           data-text={t('navigation.about', lang)}
         >
@@ -160,8 +160,32 @@ const lang = getLanguageFromUrl(Astro.url);
     
     navLinks.forEach(link => {
       const href = link.getAttribute('href');
-      if (href && (currentPath === href || (href !== '/' && href !== '/en' && currentPath.startsWith(href)))) {
-        link.classList.add('active');
+      if (href) {
+        // 获取基础路径
+        const basePath = document.querySelector('base')?.getAttribute('href') || '/';
+        
+        // 标准化当前路径和链接路径以进行比较
+        let normalizedCurrentPath = currentPath;
+        let normalizedHref = href;
+        
+        // 如果有基础路径且不是根路径，从比较中移除它
+        if (basePath !== '/' && normalizedCurrentPath.startsWith(basePath)) {
+          normalizedCurrentPath = normalizedCurrentPath.substring(basePath.length - 1);
+        }
+        if (basePath !== '/' && normalizedHref.startsWith(basePath)) {
+          normalizedHref = normalizedHref.substring(basePath.length - 1);
+        }
+        
+        // 检查是否匹配
+        const isExactMatch = currentPath === href;
+        const isHomeMatch = (normalizedHref === '/' || normalizedHref === '/en') && 
+                           (normalizedCurrentPath === '/' || normalizedCurrentPath === '/en');
+        const isPrefixMatch = normalizedHref !== '/' && normalizedHref !== '/en' && 
+                             normalizedCurrentPath.startsWith(normalizedHref);
+        
+        if (isExactMatch || isHomeMatch || isPrefixMatch) {
+          link.classList.add('active');
+        }
       }
     });
   });

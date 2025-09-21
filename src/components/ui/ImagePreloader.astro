@@ -24,11 +24,15 @@ const { images } = Astro.props;
 
 <script>
   // 客户端图片预加载
+  import { getUIImage, getQRImage } from '../../utils';
+  
   const criticalImages = [
-    '/images/ui/hero-background.png',
-    '/images/ui/title-left.png',
-    '/images/ui/title-right.png',
-    '/images/qr/wechat-official.jpg'
+    getUIImage('banner-bg'),
+    getUIImage('hero-bg'),
+    getUIImage('hero-background'),
+    getUIImage('title-left'),
+    getUIImage('title-right'),
+    getQRImage('wechat-official')
   ];
   
   // 预加载关键图片

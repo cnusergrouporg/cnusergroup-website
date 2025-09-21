@@ -1,8 +1,20 @@
 ---
 import { getLanguageFromUrl, t } from '../../utils';
-import communityImages from '../../data/community-images.json';
 
 const lang = getLanguageFromUrl(Astro.url);
+
+// 使用基础路径处理图片路径
+function processImagePath(path: string): string {
+  const basePath = import.meta.env.BASE_URL || '/';
+  if (basePath === '/') {
+    return path;
+  }
+  const cleanBasePath = basePath.replace(/\/$/, '');
+  const normalizedPath = path.startsWith('/') ? path : '/' + path;
+  return cleanBasePath + normalizedPath;
+}
+
+const qrImagePath = processImagePath('/images/community/ug-qr.png');
 ---
 
 <div id="floating-qr" class="floating-qr-container">
@@ -12,7 +24,7 @@ const lang = getLanguageFromUrl(Astro.url);
       <div class="qr-content">
         <div class="qr-image-container">
           <img 
-            src={communityImages["User Group 公众号"]} 
+            src={qrImagePath} 
             alt={lang === 'zh' ? 'User Group 公众号二维码' : 'User Group WeChat QR Code'}
             class="qr-image"
           />

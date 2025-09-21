@@ -1,5 +1,5 @@
 ---
-import { getLanguageFromUrl, t } from '../../utils';
+import { getLanguageFromUrl, t, getUIImage, getIcon } from '../../utils';
 import Button from '../ui/Button.astro';
 import Card from '../ui/Card.astro';
 
@@ -10,7 +10,7 @@ const applications = [
     type: 'leader',
     title: t('community.applications.leader.title', lang),
     cta: t('community.applications.leader.cta', lang),
-    icon: `${import.meta.env.BASE_URL}images/icons/user.png`,
+    icon: getIcon('user'),
     url: '#',
     description: lang === 'zh' ? '成为社区领导者，组织技术活动，推动本地云计算发展' : 'Become a community leader, organize tech events, and drive local cloud computing development'
   },
@@ -18,7 +18,7 @@ const applications = [
     type: 'volunteer',
     title: t('community.applications.volunteer.title', lang),
     cta: t('community.applications.volunteer.cta', lang),
-    icon: `${import.meta.env.BASE_URL}images/icons/volunteer.png`,
+    icon: getIcon('volunteer'),
     url: '#',
     description: lang === 'zh' ? '加入志愿者团队，协助活动组织，为社区贡献力量' : 'Join the volunteer team, assist with event organization, and contribute to the community'
   },
@@ -26,7 +26,7 @@ const applications = [
     type: 'instructor',
     title: t('community.applications.instructor.title', lang),
     cta: t('community.applications.instructor.cta', lang),
-    icon: `${import.meta.env.BASE_URL}images/icons/teacher.png`,
+    icon: getIcon('teacher'),
     url: '#',
     description: lang === 'zh' ? '分享技术知识，成为社区讲师，传播云计算最佳实践' : 'Share technical knowledge, become a community instructor, and spread cloud computing best practices'
   }
@@ -39,7 +39,7 @@ const applications = [
     <div class="text-center mb-16">
       <div class="flex items-center justify-center mb-6">
         <img 
-          src={`${import.meta.env.BASE_URL}images/ui/title-left.png`}
+          src={getUIImage('title-left')}
           alt="" 
           class="h-8"
         />
@@ -47,7 +47,7 @@ const applications = [
           {t('community.title', lang)}
         </h2>
         <img 
-          src={`${import.meta.env.BASE_URL}images/ui/title-right.png`}
+          src={getUIImage('title-right')}
           alt="" 
           class="h-8"
         />
@@ -67,7 +67,7 @@ const applications = [
           <!-- Background Pattern -->
           <div class="absolute inset-0 opacity-5">
             <img 
-              src={`${import.meta.env.BASE_URL}images/ui/community-card-background.png`}
+              src={getUIImage('community-card-background')}
               alt=""
               class="w-full h-full object-cover"
             />

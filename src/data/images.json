@@ -76,6 +76,8 @@
   "ui": {
     "titleLeft": "/images/ui/title-left.png",
     "titleRight": "/images/ui/title-right.png",
+    "banner-bg": "/images/ui/banner-bg.jpg",
+    "hero-bg": "/images/hero-bg.png",
     "heroBackground": "/images/ui/hero-background.png",
     "heroHeaderDecoration": "/images/ui/hero-header-decoration.png",
     "heroHeaderDecorationMobile": "/images/ui/hero-header-decoration-mobile.png",
