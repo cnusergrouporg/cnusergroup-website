@@ -1,5 +1,6 @@
 ---
 import { getLanguageFromUrl, t } from '../../utils';
+import { getUIImage } from '../../utils/images';
 import Button from '../ui/Button.astro';
 
 interface Props {
@@ -16,7 +17,7 @@ const {
   subtitle = t('hero.subtitle', lang),
   ctaText = t('hero.cta', lang),
   ctaLink = '#global-community',
-  backgroundImage = `${import.meta.env.BASE_URL}images/ui/banner-bg.jpg`
+  backgroundImage = '/images/ui/banner-bg.jpg'
 } = Astro.props;
 ---
 

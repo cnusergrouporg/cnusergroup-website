@@ -6,6 +6,7 @@ import CommunityBuilding from '../components/sections/CommunityBuilding.astro';
 import CityCard from '../components/ui/CityCard.astro';
 import Button from '../components/ui/Button.astro';
 import { getLanguageFromUrl, t, getActiveCities } from '../utils';
+import { getUIImage } from '../utils/images';
 
 const lang = getLanguageFromUrl(Astro.url);
 
@@ -28,7 +29,7 @@ const featuredCities = allCities.slice(0, 6);
       <div class="text-center mb-16">
         <div class="flex items-center justify-center mb-6">
           <img 
-            src={`${import.meta.env.BASE_URL}images/ui/title-left.png`}
+            src={getUIImage('titleLeft')}
             alt="" 
             class="h-8"
           />
@@ -36,7 +37,7 @@ const featuredCities = allCities.slice(0, 6);
             {t('cities.title', lang)}
           </h2>
           <img 
-            src={`${import.meta.env.BASE_URL}images/ui/title-right.png`}
+            src={getUIImage('titleRight')}
             alt="" 
             class="h-8"
           />
