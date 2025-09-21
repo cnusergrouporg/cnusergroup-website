@@ -1,6 +1,24 @@
 import imageConfig from '../data/images.json';
 import { getOptimizedImageUrl, getDeviceSpecificSizes } from './imageOptimization';
 
+// 获取基础路径
+function getBasePath(): string {
+  // 在构建时使用环境变量或配置
+  return import.meta.env.BASE_URL || '/';
+}
+
+// 处理图片路径，确保包含正确的 base path
+function processImagePath(path: string): string {
+  const basePath = getBasePath();
+  // 如果路径已经包含 base path，直接返回
+  if (path.startsWith(basePath)) {
+    return path;
+  }
+  // 移除开头的 / 并添加 base path
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return basePath + cleanPath;
+}
+
 // 图片类型定义
 export type ImageCategory = 'cities' | 'ui' | 'icons' | 'qr';
 export type DeviceType = 'pc' | 'mobile';
@@ -17,6 +35,9 @@ export function getCityImage(cityId: string, device: DeviceType = 'pc', optimize
     imagePath = `/images/cities/default-${device}.png`;
   }
 
+  // 处理路径以包含正确的 base path
+  imagePath = processImagePath(imagePath);
+
   // 如果需要优化，返回优化后的 URL
   if (optimized) {
     const width = device === 'mobile' ? 640 : 1024;
@@ -29,19 +50,22 @@ export function getCityImage(cityId: string, device: DeviceType = 'pc', optimize
 // 获取UI图片
 export function getUIImage(imageName: string): string {
   const uiImages = imageConfig.ui as Record<string, string>;
-  return uiImages[imageName] || `/images/ui/${imageName}.png`;
+  const imagePath = uiImages[imageName] || `/images/ui/${imageName}.png`;
+  return processImagePath(imagePath);
 }
 
 // 获取图标
 export function getIcon(iconName: string): string {
   const icons = imageConfig.icons as Record<string, string>;
-  return icons[iconName] || `/images/icons/${iconName}.png`;
+  const imagePath = icons[iconName] || `/images/icons/${iconName}.png`;
+  return processImagePath(imagePath);
 }
 
 // 获取二维码图片
 export function getQRImage(qrName: string): string {
   const qrImages = imageConfig.qr as Record<string, string>;
-  return qrImages[qrName] || `/images/qr/${qrName}.jpg`;
+  const imagePath = qrImages[qrName] || `/images/qr/${qrName}.jpg`;
+  return processImagePath(imagePath);
 }
 
 // 获取响应式图片源集
@@ -83,7 +107,7 @@ export function getCityImageResponsive(cityId: string): {
 
 // 获取默认城市图片
 export function getDefaultCityImage(device: DeviceType = 'pc'): string {
-  return `/images/cities/default-${device}.png`;
+  return processImagePath(`/images/cities/default-${device}.png`);
 }
 
 // 检查城市图片是否存在

@@ -1,5 +1,22 @@
 import type { Language } from '@/types';
 
+// 获取基础路径
+function getBasePath(): string {
+  return import.meta.env.BASE_URL || '/';
+}
+
+// 处理路径，确保包含正确的 base path
+function processRoutePath(path: string): string {
+  const basePath = getBasePath();
+  // 如果 basePath 是 '/'，直接返回路径
+  if (basePath === '/') {
+    return path;
+  }
+  // 移除 basePath 末尾的斜杠，并确保路径正确拼接
+  const cleanBasePath = basePath.replace(/\/$/, '');
+  return cleanBasePath + path;
+}
+
 // 路由配置
 export const routes = {
   home: '',
@@ -29,7 +46,8 @@ export function getRoute(key: RouteKey, lang: Language, params?: Record<string, 
   const langPrefix = lang === 'zh' ? '' : `/${lang}`;
   const fullPath = `${langPrefix}/${path}`.replace(/\/+/g, '/').replace(/\/$/, '') || '/';
   
-  return fullPath;
+  // 处理 base path
+  return processRoutePath(fullPath);
 }
 
 // 获取所有支持语言的路由
