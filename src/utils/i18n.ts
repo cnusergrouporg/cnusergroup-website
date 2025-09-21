@@ -2,7 +2,17 @@ import type { Language } from '@/types';
 
 // 从 URL 路径中提取语言
 export function getLanguageFromUrl(url: URL): Language {
-  const pathname = url.pathname;
+  let pathname = url.pathname;
+  
+  // 移除 base URL 前缀进行处理
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  if (baseUrl !== '/' && pathname.startsWith(baseUrl)) {
+    pathname = pathname.slice(baseUrl.length);
+    if (!pathname.startsWith('/')) {
+      pathname = '/' + pathname;
+    }
+  }
+  
   const segments = pathname.split('/').filter(Boolean);
   
   if (segments.length > 0 && (segments[0] === 'zh' || segments[0] === 'en')) {
