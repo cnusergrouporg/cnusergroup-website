@@ -2,6 +2,23 @@
  * 图片错误处理工具
  */
 
+// 获取基础路径
+function getBasePath(): string {
+  return import.meta.env.BASE_URL || '/';
+}
+
+// 处理图片路径，确保包含正确的 base path
+function processImagePath(path: string): string {
+  const basePath = getBasePath();
+  // 如果路径已经包含 base path，直接返回
+  if (path.startsWith(basePath)) {
+    return path;
+  }
+  // 移除开头的 / 并添加 base path
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return basePath + cleanPath;
+}
+
 export interface FallbackImageConfig {
   cities: {
     pc: string;
@@ -23,20 +40,20 @@ export interface FallbackImageConfig {
 
 export const fallbackImages: FallbackImageConfig = {
   cities: {
-    pc: '/images/cities/fallback-city.png',
-    mobile: '/images/cities/fallback-city-mobile.png'
+    pc: processImagePath('/images/cities/fallback-city.svg'),
+    mobile: processImagePath('/images/cities/fallback-city-mobile.svg')
   },
   ui: {
-    decoration: '/images/ui/fallback-decoration.png',
-    hero: '/images/ui/fallback-hero.png',
-    card: '/images/ui/fallback-card.png'
+    decoration: processImagePath('/images/ui/fallback-decoration.svg'),
+    hero: processImagePath('/images/ui/fallback-hero.svg'),
+    card: processImagePath('/images/ui/fallback-card.svg')
   },
   icons: {
-    default: '/images/icons/fallback-icon.png',
-    social: '/images/icons/fallback-social.png'
+    default: processImagePath('/images/icons/fallback-icon.svg'),
+    social: processImagePath('/images/icons/fallback-social.svg')
   },
   qr: {
-    default: '/images/qr/fallback-qr.png'
+    default: processImagePath('/images/qr/fallback-qr.svg')
   }
 };
 

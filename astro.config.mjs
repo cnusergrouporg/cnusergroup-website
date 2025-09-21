@@ -6,7 +6,7 @@ export default defineConfig({
   integrations: [tailwind()],
   site: 'https://cnusergroup.github.io',
   // GitHub Pages 部署时使用 base URL，本地开发时使用根路径
-  base: process.env.NODE_ENV === 'production' ? '/cnusergroup-website' : '/',
+  base: (process.env.NODE_ENV === 'production' || process.env.CI) ? '/cnusergroup-website' : '/',
   output: 'static',
   build: {
     assets: 'assets'
