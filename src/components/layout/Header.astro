@@ -176,14 +176,33 @@ const lang = getLanguageFromUrl(Astro.url);
           normalizedHref = normalizedHref.substring(basePath.length - 1);
         }
         
-        // 检查是否匹配
-        const isExactMatch = currentPath === href;
-        const isHomeMatch = (normalizedHref === '/' || normalizedHref === '/en') && 
-                           (normalizedCurrentPath === '/' || normalizedCurrentPath === '/en');
-        const isPrefixMatch = normalizedHref !== '/' && normalizedHref !== '/en' && 
-                             normalizedCurrentPath.startsWith(normalizedHref);
+        // 确保路径以 / 开头
+        if (!normalizedCurrentPath.startsWith('/')) {
+          normalizedCurrentPath = '/' + normalizedCurrentPath;
+        }
+        if (!normalizedHref.startsWith('/')) {
+          normalizedHref = '/' + normalizedHref;
+        }
         
-        if (isExactMatch || isHomeMatch || isPrefixMatch) {
+        // 检查是否匹配
+        let isActive = false;
+        
+        // 首页匹配：只有当前路径是根路径或语言根路径时才激活首页
+        if (normalizedHref === '/' || normalizedHref === '/en/') {
+          isActive = normalizedCurrentPath === '/' || normalizedCurrentPath === '/en/' || 
+                    normalizedCurrentPath === '/en' || normalizedCurrentPath === '';
+        } 
+        // 其他页面匹配：使用前缀匹配
+        else {
+          // 移除末尾的斜杠进行比较
+          const cleanCurrentPath = normalizedCurrentPath.replace(/\/$/, '') || '/';
+          const cleanHrefPath = normalizedHref.replace(/\/$/, '') || '/';
+          
+          isActive = cleanCurrentPath === cleanHrefPath || 
+                    (cleanHrefPath !== '/' && cleanCurrentPath.startsWith(cleanHrefPath + '/'));
+        }
+        
+        if (isActive) {
           link.classList.add('active');
         }
       }
