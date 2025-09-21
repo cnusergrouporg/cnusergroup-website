@@ -5,8 +5,8 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   integrations: [tailwind()],
   site: 'https://cnusergroup.github.io',
-  // GitHub Pages 部署时使用 base URL
-  base: '/cnusergroup-website',
+  // GitHub Pages 部署时使用 base URL，本地开发时使用根路径
+  base: process.env.NODE_ENV === 'production' ? '/cnusergroup-website' : '/',
   output: 'static',
   build: {
     assets: 'assets'
