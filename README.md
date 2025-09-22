@@ -62,7 +62,7 @@ npm run preview
 
 1. 推送代码到 `main` 分支
 2. GitHub Actions 自动构建和部署
-3. 访问 https://cnusergroup.github.io/cnusergroup-website
+3. 访问 https://cnusergrouporg.github.io/cnusergroup-website
 
 ### 手动部署
 
