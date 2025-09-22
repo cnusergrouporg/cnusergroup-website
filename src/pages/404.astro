@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/ui/Button.astro';
-import { getLanguageFromUrl } from '../utils';
+import { getLanguageFromUrl, getRoute } from '../utils';
 
 const lang = getLanguageFromUrl(Astro.url);
 ---
@@ -35,7 +35,7 @@ const lang = getLanguageFromUrl(Astro.url);
       <!-- Action Buttons -->
       <div class="space-y-4">
         <Button 
-          href={lang === 'zh' ? '/' : '/en'}
+          href={getRoute('home', lang)}
           variant="primary"
           size="lg"
           class="w-full justify-center"
@@ -44,7 +44,7 @@ const lang = getLanguageFromUrl(Astro.url);
         </Button>
         
         <Button 
-          href={lang === 'zh' ? '/cities' : '/en/cities'}
+          href={getRoute('cities', lang)}
           variant="outline"
           size="lg"
           class="w-full justify-center"

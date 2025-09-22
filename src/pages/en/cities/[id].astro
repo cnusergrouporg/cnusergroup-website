@@ -2,7 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import CityDetail from '../../../components/sections/CityDetail.astro';
 import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
-import { getLanguageFromUrl, getCityById, getLocalizedValue, t } from '../../../utils';
+import { getLanguageFromUrl, getCityById, getLocalizedValue, t, getRoute } from '../../../utils';
 
 export async function getStaticPaths() {
   const { getCities } = await import('../../../utils');
@@ -41,7 +41,7 @@ const pageDescription = getLocalizedValue(city.description, lang);
   <section class="py-8 bg-gray-50">
     <div class="container-custom text-center">
       <a 
-        href={lang === 'zh' ? '/cities' : '/en/cities'}
+        href={getRoute('cities', lang)}
         class="inline-flex items-center text-aws-orange hover:text-orange-600 transition-colors duration-200 font-medium"
       >
         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

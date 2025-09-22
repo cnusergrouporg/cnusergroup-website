@@ -161,41 +161,18 @@ const lang = getLanguageFromUrl(Astro.url);
     navLinks.forEach(link => {
       const href = link.getAttribute('href');
       if (href) {
-        // 获取基础路径
-        const basePath = document.querySelector('base')?.getAttribute('href') || '/';
-        
-        // 标准化当前路径和链接路径以进行比较
-        let normalizedCurrentPath = currentPath;
-        let normalizedHref = href;
-        
-        // 如果有基础路径且不是根路径，从比较中移除它
-        if (basePath !== '/' && normalizedCurrentPath.startsWith(basePath)) {
-          normalizedCurrentPath = normalizedCurrentPath.substring(basePath.length - 1);
-        }
-        if (basePath !== '/' && normalizedHref.startsWith(basePath)) {
-          normalizedHref = normalizedHref.substring(basePath.length - 1);
-        }
-        
-        // 确保路径以 / 开头
-        if (!normalizedCurrentPath.startsWith('/')) {
-          normalizedCurrentPath = '/' + normalizedCurrentPath;
-        }
-        if (!normalizedHref.startsWith('/')) {
-          normalizedHref = '/' + normalizedHref;
-        }
-        
-        // 检查是否匹配
+        // 直接比较完整的URL路径
         let isActive = false;
         
         // 移除末尾的斜杠进行比较
-        const cleanCurrentPath = normalizedCurrentPath.replace(/\/$/, '') || '/';
-        const cleanHrefPath = normalizedHref.replace(/\/$/, '') || '/';
+        const cleanCurrentPath = currentPath.replace(/\/$/, '') || '/';
+        const cleanHrefPath = href.replace(/\/$/, '') || '/';
         
-        // 首页匹配：只有当前路径完全匹配根路径时才激活首页
-        if (cleanHrefPath === '/' || cleanHrefPath === '/en') {
-          isActive = cleanCurrentPath === '/' || cleanCurrentPath === '/en';
+        // 首页匹配：精确匹配
+        if (cleanHrefPath.endsWith('/cnusergroup-website') || cleanHrefPath.endsWith('/cnusergroup-website/en')) {
+          isActive = cleanCurrentPath === cleanHrefPath;
         } 
-        // 其他页面匹配：使用精确匹配和前缀匹配
+        // 其他页面匹配：精确匹配或前缀匹配
         else {
           isActive = cleanCurrentPath === cleanHrefPath || 
                     cleanCurrentPath.startsWith(cleanHrefPath + '/');

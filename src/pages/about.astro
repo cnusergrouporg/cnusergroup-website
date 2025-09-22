@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getLanguageFromUrl, t } from '../utils';
+import { getLanguageFromUrl, t, getRoute } from '../utils';
 
 const lang = getLanguageFromUrl(Astro.url);
 
@@ -30,7 +30,7 @@ function processImagePath(path: string): string {
             亚马逊云科技 User Group（UG)全球社区由对技术充满热情的开发者组成，是为开发者们提供彼此学习、分享技术实践、培训进阶等活动的技术交流分享的社区。社区聚会汇集了亚马逊云科技技术开发者、合作伙伴、技术顾问和技术爱好者,共同分享技术热情。我们为各地 User Group 社区提供自主运营空间,并为社区领导者提供丰富活动资源和技术咨询。目前，User Group 社区已遍布全球 100 多个国家,超过 470 个组织，拥有 50 多万名成员。在中国，UG 社区已覆盖北京、上海、深圳、成都、杭州、合肥、重庆、武汉等 14 个城市。
           </div>
           <div class="banner-buttons">
-            <a href="/cities" class="btn btn-primary">查看用户组</a>
+            <a href={getRoute('cities', lang)} class="btn btn-primary">查看用户组</a>
             <a href="https://builder.aws.com/connect/community/user-groups" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">了解更多</a>
           </div>
         </div>

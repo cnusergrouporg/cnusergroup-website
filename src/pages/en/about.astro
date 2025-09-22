@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getLanguageFromUrl, t } from '../../utils';
+import { getLanguageFromUrl, t, getRoute } from '../../utils';
 
 const lang = getLanguageFromUrl(Astro.url);
 
@@ -30,7 +30,7 @@ function processImagePath(path: string): string {
             User Groups (UG) global community is composed of developers passionate about technology, providing a technical exchange and sharing community for developers to learn from each other, share technical practices, and advance their training. Community gatherings bring together technical developers, partners, technical consultants, and technology enthusiasts to share their passion for technology. We provide autonomous operating space for User Group communities in various regions and offer rich activity resources and technical consulting for community leaders. Currently, User Group communities are spread across more than 100 countries worldwide, with over 470 organizations and more than 500,000 members. In China, UG communities have covered 14 cities including Beijing, Shanghai, Shenzhen, Chengdu, Hangzhou, Hefei, Chongqing, and Wuhan.
           </div>
           <div class="banner-buttons">
-            <a href="/en/cities" class="btn btn-primary">View User Groups</a>
+            <a href={getRoute('cities', lang)} class="btn btn-primary">View User Groups</a>
             <a href="https://builder.aws.com/connect/community/user-groups" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Learn More</a>
           </div>
         </div>
