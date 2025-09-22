@@ -187,19 +187,18 @@ const lang = getLanguageFromUrl(Astro.url);
         // 检查是否匹配
         let isActive = false;
         
-        // 首页匹配：只有当前路径是根路径或语言根路径时才激活首页
-        if (normalizedHref === '/' || normalizedHref === '/en/') {
-          isActive = normalizedCurrentPath === '/' || normalizedCurrentPath === '/en/' || 
-                    normalizedCurrentPath === '/en' || normalizedCurrentPath === '';
+        // 移除末尾的斜杠进行比较
+        const cleanCurrentPath = normalizedCurrentPath.replace(/\/$/, '') || '/';
+        const cleanHrefPath = normalizedHref.replace(/\/$/, '') || '/';
+        
+        // 首页匹配：只有当前路径完全匹配根路径时才激活首页
+        if (cleanHrefPath === '/' || cleanHrefPath === '/en') {
+          isActive = cleanCurrentPath === '/' || cleanCurrentPath === '/en';
         } 
-        // 其他页面匹配：使用前缀匹配
+        // 其他页面匹配：使用精确匹配和前缀匹配
         else {
-          // 移除末尾的斜杠进行比较
-          const cleanCurrentPath = normalizedCurrentPath.replace(/\/$/, '') || '/';
-          const cleanHrefPath = normalizedHref.replace(/\/$/, '') || '/';
-          
           isActive = cleanCurrentPath === cleanHrefPath || 
-                    (cleanHrefPath !== '/' && cleanCurrentPath.startsWith(cleanHrefPath + '/'));
+                    cleanCurrentPath.startsWith(cleanHrefPath + '/');
         }
         
         if (isActive) {

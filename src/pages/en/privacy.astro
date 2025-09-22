@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLanguageFromUrl } from '../../utils';
+
+const lang = getLanguageFromUrl(Astro.url);
+---
+
+<BaseLayout title="Privacy Policy">
+  <div class="min-h-screen bg-gray-50 py-16">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">
+          Privacy Policy
+        </h1>
+        
+        <div class="prose prose-lg max-w-none">
+          <p class="text-gray-600 mb-6">Last updated: January 1, 2024</p>
+          
+          <h2>Information Collection</h2>
+          <p>We may collect personal information you provide, including but not limited to name, email address, contact information, etc.</p>
+          
+          <h2>Information Use</h2>
+          <p>We use the collected information to:</p>
+          <ul>
+            <li>Provide and maintain our services</li>
+            <li>Improve user experience</li>
+            <li>Send relevant notifications and updates</li>
+            <li>Respond to user inquiries</li>
+          </ul>
+          
+          <h2>Information Protection</h2>
+          <p>We take appropriate security measures to protect your personal information from unauthorized access, use, or disclosure.</p>
+          
+          <h2>Contact Us</h2>
+          <p>If you have any questions about this Privacy Policy, please contact us:</p>
+          <p>Email: privacy@cnusergroup.org</p>
+        </div>
+        
+        <div class="mt-8 pt-8 border-t border-gray-200">
+          <a 
+            href="/en"
+            class="inline-flex items-center px-6 py-3 bg-aws-orange text-white rounded-lg hover:bg-orange-600 transition-colors duration-200"
+          >
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

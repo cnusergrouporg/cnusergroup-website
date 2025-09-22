@@ -1,5 +1,5 @@
 ---
-import { getLanguageFromUrl, t } from '../../utils';
+import { getLanguageFromUrl, t, getRoute } from '../../utils';
 import SocialMediaLinks from '../ui/SocialMediaLinks.astro';
 import WeChatQRModal from '../ui/WeChatQRModal.astro';
 
@@ -39,13 +39,13 @@ const lang = getLanguageFromUrl(Astro.url);
         <!-- Links - 居中显示 -->
         <div class="flex items-center space-x-6">
           <a 
-            href={lang === 'zh' ? '/privacy' : '/en/privacy'}
+            href={getRoute('privacy', lang)}
             class="text-sm text-gray-600 hover:text-orange-500 transition-colors duration-200"
           >
             {t('footer.privacy', lang)}
           </a>
           <a 
-            href={lang === 'zh' ? '/terms' : '/en/terms'}
+            href={getRoute('terms', lang)}
             class="text-sm text-gray-600 hover:text-orange-500 transition-colors duration-200"
           >
             {t('footer.terms', lang)}

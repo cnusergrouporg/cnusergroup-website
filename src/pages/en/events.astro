@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getLanguageFromUrl, t } from '../../utils';
+import { getLanguageFromUrl, t, getRoute } from '../../utils';
 
 const lang = getLanguageFromUrl(Astro.url);
 ---
@@ -26,7 +26,7 @@ const lang = getLanguageFromUrl(Astro.url);
               : 'We are working hard to prepare exciting event content for you. Stay tuned!'}
           </p>
           <a 
-            href={lang === 'zh' ? '/' : '/en'}
+            href={getRoute('home', lang)}
             class="inline-flex items-center px-6 py-3 bg-aws-orange text-white rounded-lg hover:bg-orange-600 transition-colors duration-200"
           >
             {lang === 'zh' ? '返回首页' : 'Back to Home'}
